@@ -1,4 +1,8 @@
-.container {
-    max-width: 1020px;
-    text-align: center;
+body {
+    background: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    font-family: "montserrat", sans-serif;
+    background: url(../img/bg.png) no-repeat center;
+    background-size: cover;
 }

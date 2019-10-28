@@ -4,10 +4,44 @@
     <meta charset="UTF-8">
     <title>Przychodnia</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/contact-data.css}">
+    <link rel="stylesheet" th:href="@{/css/contact-section.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
 <body>
 
 <div th:insert="fragments/topBar.html"></div>
 
+<div class="contact-section">
+
+    <h1 th:text="'Kontakt z przychodnią ' + ${contactData.name}"></h1>
+    <div class="border"></div>
+    <form class="contact-form" action="index.html" method="post">
+        <input type="text" class="contact-form-text" placeholder="Imię i nazwisko">
+        <input type="email" class="contact-form-text" placeholder="Adres email">
+        <input type="text" class="contact-form-text" placeholder="Numer telefonu">
+        <textarea class="contact-form-text" placeholder="Twoja wiadomość"></textarea>
+        <input type="submit" class="contact-form-btn" value="Wyślij">
+    </form>
+</div>
+
+<div class="wrapper">
+    <div class="contact-data">
+        <div class="card">
+            <i class="card-icon far fa-envelope"></i>
+            <p th:text="${contactData.email}">email</p>
+        </div>
+
+        <div class="card">
+            <i class="card-icon fas fa-phone"></i>
+            <p th:text="${contactData.number}">telefon</p>
+        </div>
+
+        <div class="card">
+            <i class="card-icon fas fa-map-marker-alt"></i>
+            <p th:text="${contactData.address}">address</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

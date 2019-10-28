@@ -21,6 +21,10 @@ public class ContactDataService {
         return contactDataRepository.findAll();
     }
 
+    public long count() {
+        return contactDataRepository.count();
+    }
+
     public void save(ContactData contactData) {
         contactDataRepository.save(contactData);
     }

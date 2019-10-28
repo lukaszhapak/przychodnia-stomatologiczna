@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class ContactDetails {
+public class ContactData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

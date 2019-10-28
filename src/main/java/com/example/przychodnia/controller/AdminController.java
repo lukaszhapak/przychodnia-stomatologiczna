@@ -1,6 +1,6 @@
 package com.example.przychodnia.controller;
 
-import com.example.przychodnia.entity.ContactDetails;
+import com.example.przychodnia.entity.ContactData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute(new ContactDetails());
+        model.addAttribute(new ContactData());
         return "admin";
     }
 }

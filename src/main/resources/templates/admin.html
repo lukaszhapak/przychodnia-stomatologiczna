@@ -6,9 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
+<div th:insert="fragments/topBar.html"></div>
 
 <form th:action="@{'/admin/updateContactData/' + ${contactData.id}}" th:object="${contactData}" method="post">
-
     <h3>Dane Kontaktowe: </h3>
     <table>
         <tr>

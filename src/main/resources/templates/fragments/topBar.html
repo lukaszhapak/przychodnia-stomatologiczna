@@ -13,8 +13,6 @@
     <div class="container">
         <a th:href="@{'/'}">Strona główna</a>
 
-        <span th:text="${contactData.name}">Przychodnia</span>
-
         <span sec:authorize="isAnonymous()">
             <a th:href="@{/login}">Zaloguj się </a>
         </span>

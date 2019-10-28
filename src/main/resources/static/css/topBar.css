@@ -1,4 +1,15 @@
+.container {
+    max-width: 1020px;
+    text-align: center;
+}
+
 .top-bar {
+    color: white;
     border-bottom: 1px black solid;
     padding: 10px;
+    background-color: #34495e;
+}
+
+.top-bar a {
+    color: white;
 }

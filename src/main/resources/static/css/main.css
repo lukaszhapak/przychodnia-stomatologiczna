@@ -3,9 +3,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: "montserrat", sans-serif;
-}
-
-.container {
-    max-width: 1020px;
-    text-align: center;
+    background: url(../img/bg.png) no-repeat center;
+    background-size: cover;
 }

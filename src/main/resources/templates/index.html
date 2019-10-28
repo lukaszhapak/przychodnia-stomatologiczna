@@ -5,13 +5,25 @@
     <title>Przychodnia</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" th:href="@{/css/contact-data.css}">
+    <link rel="stylesheet" th:href="@{/css/contact-section.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
 <body>
 
 <div th:insert="fragments/topBar.html"></div>
 
-<p class="name" th:text="'Przychodnia stomatologiczna:  ' + ${contactData.name}">nazwa</p>
+<div class="contact-section">
+
+    <h1 th:text="'Kontakt z przychodnią ' + ${contactData.name}"></h1>
+    <div class="border"></div>
+    <form class="contact-form" action="index.html" method="post">
+        <input type="text" class="contact-form-text" placeholder="Imię i nazwisko">
+        <input type="email" class="contact-form-text" placeholder="Adres email">
+        <input type="text" class="contact-form-text" placeholder="Numer telefonu">
+        <textarea class="contact-form-text" placeholder="Twoja wiadomość"></textarea>
+        <input type="submit" class="contact-form-btn" value="Wyślij">
+    </form>
+</div>
 
 <div class="wrapper">
     <div class="contact-data">

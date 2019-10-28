@@ -4,15 +4,32 @@
     <meta charset="UTF-8">
     <title>Przychodnia</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/contact-data.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
 <body>
 
 <div th:insert="fragments/topBar.html"></div>
 
-<p th:text="${contactData.name}">nazwa</p>
-<p th:text="${contactData.number}">telefon</p>
-<p th:text="${contactData.email}">email</p>
-<p th:text="${contactData.address}">address</p>
+<p class="name" th:text="'Przychodnia stomatologiczna:  ' + ${contactData.name}">nazwa</p>
 
+<div class="wrapper">
+    <div class="contact-data">
+        <div class="card">
+            <i class="card-icon far fa-envelope"></i>
+            <p th:text="${contactData.email}">email</p>
+        </div>
+
+        <div class="card">
+            <i class="card-icon fas fa-phone"></i>
+            <p th:text="${contactData.number}">telefon</p>
+        </div>
+
+        <div class="card">
+            <i class="card-icon fas fa-map-marker-alt"></i>
+            <p th:text="${contactData.address}">address</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,3 +1,10 @@
+body {
+    background: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    font-family: "montserrat", sans-serif;
+}
+
 .container {
     max-width: 1020px;
     text-align: center;

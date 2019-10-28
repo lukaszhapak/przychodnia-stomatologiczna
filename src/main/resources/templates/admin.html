@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>admin</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
 
-<h1>admin</h1>
+<form th:object="${contactDetails}" method="post">
+
+    <h3>Dane Kontaktowe: </h3>
+    <table>
+        <tr>
+            <td><label for="name"></label>Nazwa Przychodni:</td>
+            <td><input id="name" type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td><label for="number"></label>Numer telefonu:</td>
+            <td><input id="number" type="text" th:field="*{number}"></td>
+        </tr>
+        <tr>
+            <td><label for="email"></label>Email:</td>
+            <td><input id="email" type="text" th:field="*{email}"></td>
+        </tr>
+        <tr>
+            <td><label for="address"></label>Adres:</td>
+            <td><input id="address" type="text" th:field="*{address}"></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Zaaktualizuj dane">
+
+</form>
 
 </body>
 </html>

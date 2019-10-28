@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/topBar.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container">
+        <a th:href="@{'/'}">Strona główna</a>
+
+        <span th:text="${contactData.name}">Przychodnia</span>
+
+        <span sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">Zaloguj się </a>
+        </span>
+
+        <span sec:authorize="isAuthenticated()">
+            <span sec:authentication="name">nazwa użytkownika</span>
+        </span>
+
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">panel administratora</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -16,11 +16,11 @@
 
     <h1 th:text="'Kontakt z przychodnią ' + ${contactData.name}"></h1>
     <div class="border"></div>
-    <form class="contact-form" action="index.html" method="post">
-        <input type="text" class="contact-form-text" placeholder="Imię i nazwisko">
-        <input type="email" class="contact-form-text" placeholder="Adres email">
-        <input type="text" class="contact-form-text" placeholder="Numer telefonu">
-        <textarea class="contact-form-text" placeholder="Twoja wiadomość"></textarea>
+    <form class="contact-form" th:action="@{/sendMessage}" th:object="${message}" method="post">
+        <input th:field="*{name}" type="text" class="contact-form-text" placeholder="Imię i nazwisko">
+        <input th:field="*{email}" type="email" class="contact-form-text" placeholder="Adres email">
+        <input th:field="*{number}" type="text" class="contact-form-text" placeholder="Numer telefonu">
+        <textarea th:field="*{text}" class="contact-form-text" placeholder="Twoja wiadomość"></textarea>
         <input type="submit" class="contact-form-btn" value="Wyślij">
     </form>
 </div>

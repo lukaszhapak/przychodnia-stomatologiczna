@@ -1,6 +1,7 @@
 package com.example.przychodnia.controller;
 
 import com.example.przychodnia.entity.ContactData;
+import com.example.przychodnia.entity.User;
 import com.example.przychodnia.service.ContactDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class AdminController {
     @GetMapping("/admin")
     public String admin(Model model) {
         model.addAttribute(contactDataService.findAll().get(0));
+        model.addAttribute(new User());
         return "admin";
     }
 

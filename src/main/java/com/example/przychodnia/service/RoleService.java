@@ -5,6 +5,8 @@ import com.example.przychodnia.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RoleService {
 
@@ -21,5 +23,9 @@ public class RoleService {
 
     public long count() {
         return roleRepository.count();
+    }
+
+    public Optional<Role> findByRoleName(String roleName) {
+        return roleRepository.findByRoleName(roleName);
     }
 }

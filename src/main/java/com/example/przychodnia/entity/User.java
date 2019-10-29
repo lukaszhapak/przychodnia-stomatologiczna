@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,7 +16,7 @@ public class User {
     private Long id;
     private String userName;
     private String password;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "user_role",
             joinColumns =
@@ -24,5 +24,5 @@ public class User {
             inverseJoinColumns =
             @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private Set<Role> roles;
+    private List<Role> roles;
 }

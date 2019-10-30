@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+
+<div th:insert="fragments/adminTopBar.html"></div>
+
+Utworzono konto użytkownika o nazwie: <span th:text="${user.userName}"></span>
+
+</body>
+</html>

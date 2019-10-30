@@ -51,6 +51,6 @@ public class AdminController {
     @PostMapping("/addUser")
     public String addUser(User user) {
         userService.save(user);
-        return "redirect:/admin";
+        return "/admin/addUserConfirm";
     }
 }

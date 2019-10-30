@@ -1,8 +1,10 @@
 package com.example.przychodnia.controller;
 
 import com.example.przychodnia.entity.ContactData;
+import com.example.przychodnia.entity.Role;
 import com.example.przychodnia.entity.User;
 import com.example.przychodnia.service.ContactDataService;
+import com.example.przychodnia.service.RoleService;
 import com.example.przychodnia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +20,13 @@ public class AdminController {
 
     final private ContactDataService contactDataService;
     final private UserService userService;
+    final private RoleService roleService;
 
     @Autowired
-    public AdminController(ContactDataService contactDataService, UserService userService) {
+    public AdminController(ContactDataService contactDataService, UserService userService, RoleService roleService) {
         this.contactDataService = contactDataService;
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("")
@@ -64,5 +68,18 @@ public class AdminController {
     public String delete(@PathVariable String id) {
         userService.deleteById(id);
         return "/admin/user/deleted";
+    }
+
+    @GetMapping("/user/grant/{id}")
+    public String grantForm(Model model, @PathVariable String id) {
+        model.addAttribute("roles", roleService.findAll(id));
+        model.addAttribute("role", new Role());
+        return "/admin/user/grant";
+    }
+
+    @PostMapping("/user/grant/{id}")
+    public String grant(@PathVariable String id, Role role) {
+        userService.addRole(role, id);
+        return "/admin/user/granted";
     }
 }

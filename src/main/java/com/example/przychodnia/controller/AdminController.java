@@ -60,4 +60,9 @@ public class AdminController {
         return "/admin/user/list";
     }
 
+    @GetMapping("/user/delete/{id}")
+    public String delete(@PathVariable String id) {
+        userService.deleteById(id);
+        return "/admin/user/deleted";
+    }
 }

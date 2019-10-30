@@ -8,6 +8,7 @@ import com.example.przychodnia.service.RoleService;
 import com.example.przychodnia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ public class DemoData implements CommandLineRunner {
     final private ContactDataService contactDataService;
     final private RoleService roleService;
     final private UserService userService;
+    final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public DemoData(ContactDataService contactDataService, RoleService roleService, UserService userService) {
+    public DemoData(ContactDataService contactDataService, RoleService roleService, UserService userService, PasswordEncoder passwordEncoder) {
         this.contactDataService = contactDataService;
         this.roleService = roleService;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -46,9 +49,8 @@ public class DemoData implements CommandLineRunner {
 
             User user = new User();
             user.setUserName("admin");
-            user.setPassword("123");
+            user.setPassword(passwordEncoder.encode("123"));
             user.setRoles(new ArrayList<>());
-
             user.getRoles().add(role_admin.orElse(null));
 
             userService.save(user);

@@ -53,4 +53,11 @@ public class AdminController {
         userService.save(user);
         return "/admin/user/added";
     }
+
+    @GetMapping("/user/list")
+    public String list(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "/admin/user/list";
+    }
+
 }

@@ -52,4 +52,20 @@ public class UserService {
             }
         }
     }
+
+    public User findById(String id) {
+        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    }
+
+    public void deleteRole(Role role, String userId) {
+        User user = userRepository.findById(Long.parseLong(userId)).orElse(null);
+        role = roleRepository.findById(role.getId()).orElse(null);
+
+        if (user != null) {
+            if (role != null) {
+                user.getRoles().remove(role);
+                userRepository.save(user);
+            }
+        }
+    }
 }

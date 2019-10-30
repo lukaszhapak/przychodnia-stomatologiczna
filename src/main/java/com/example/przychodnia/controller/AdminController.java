@@ -70,16 +70,29 @@ public class AdminController {
         return "/admin/user/deleted";
     }
 
-    @GetMapping("/user/grant/{id}")
+    @GetMapping("/user/role/grant/{id}")
     public String grantForm(Model model, @PathVariable String id) {
         model.addAttribute("roles", roleService.findAll(id));
         model.addAttribute("role", new Role());
-        return "/admin/user/grant";
+        return "/admin/user/role/grant";
     }
 
-    @PostMapping("/user/grant/{id}")
+    @PostMapping("/user/role/grant/{id}")
     public String grant(@PathVariable String id, Role role) {
         userService.addRole(role, id);
-        return "/admin/user/granted";
+        return "/admin/user/role/granted";
+    }
+
+    @GetMapping("/user/role/delete/{id}")
+    public String takeForm(Model model, @PathVariable String id) {
+        model.addAttribute("roles", userService.findById(id).getRoles());
+        model.addAttribute("role", new Role());
+        return "/admin/user/role/delete";
+    }
+
+    @PostMapping("/user/role/delete/{id}")
+    public String take(@PathVariable String id, Role role) {
+        userService.deleteRole(role, id);
+        return "/admin/user/role/deleted";
     }
 }

@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     final private ContactDataService contactDataService;
@@ -23,20 +25,30 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        model.addAttribute(contactDataService.findAll().get(0));
-        model.addAttribute(new User());
-        return "admin";
+    @GetMapping("")
+    public String admin() {
+        return "admin/admin";
     }
 
-    @PostMapping("/admin/updateContactData/{id}")
+    @GetMapping("/updateContactData")
+    public String updateContactDataForm(Model model) {
+        model.addAttribute(contactDataService.findAll().get(0));
+        return "/admin/updateContactData";
+    }
+
+    @PostMapping("/updateContactData/{id}")
     public String updateContactData(ContactData contactData, @PathVariable String id) {
         contactDataService.save(contactData);
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/addUser")
+    @GetMapping("/addUser")
+    public String addUserForm(Model model) {
+        model.addAttribute(new User());
+        return "admin/addUser";
+    }
+
+    @PostMapping("/addUser")
     public String addUser(User user) {
         userService.save(user);
         return "redirect:/admin";

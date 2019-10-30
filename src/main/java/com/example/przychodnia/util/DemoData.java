@@ -49,7 +49,7 @@ public class DemoData implements CommandLineRunner {
 
             User user = new User();
             user.setUserName("admin");
-            user.setPassword(passwordEncoder.encode("123"));
+            user.setPassword("123");
             user.setRoles(new ArrayList<>());
             user.getRoles().add(role_admin.orElse(null));
 

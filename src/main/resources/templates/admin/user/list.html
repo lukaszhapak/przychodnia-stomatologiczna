@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+
+<div th:insert="fragments/adminTopBar.html"></div>
+
+<h3>Lista wszystkich użytkowników</h3>
+
+<table>
+    <tr>
+        <th>Nazwa użytkownika</th>
+        <th>Uprawnienia</th>
+        <th>Nadaj uprawnienia</th>
+        <th>zabierz uprawnienia</th>
+        <th>Usuń użytkownika</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.userName}"></td>
+        <td>
+            <span th:each="role, iterStat : ${user.roles}"
+                  th:text="${!iterStat.last} ? ${role.roleName} + ', ': ${role.roleName}">
+            </span>
+        </td>
+        <td><a th:href="@{'/admin/user/role/grant/' + ${user.id}}">x</a></td>
+        <td><a th:if="${user.roles.size()} > 0" th:href="@{'/admin/user/role/delete/' + ${user.id}}">x</a></td>
+        <td><a th:href="@{'/admin/user/delete/' + ${user.id}}">x</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

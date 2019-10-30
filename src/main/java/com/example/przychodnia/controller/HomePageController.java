@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomePageController {
 
-    final private ContactDataService contactDataService;
-    final private MessageService messageService;
+    private final ContactDataService contactDataService;
+    private final MessageService messageService;
 
     @Autowired
     public HomePageController(ContactDataService contactDataService, MessageService messageService) {

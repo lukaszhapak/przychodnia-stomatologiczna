@@ -17,10 +17,10 @@ import java.util.Optional;
 @Component
 public class DemoData implements CommandLineRunner {
 
-    final private ContactDataService contactDataService;
-    final private RoleService roleService;
-    final private UserService userService;
-    final private PasswordEncoder passwordEncoder;
+    private final ContactDataService contactDataService;
+    private final RoleService roleService;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public DemoData(ContactDataService contactDataService, RoleService roleService, UserService userService, PasswordEncoder passwordEncoder) {

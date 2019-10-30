@@ -13,8 +13,8 @@ import java.util.Optional;
 @Service
 public class RoleService {
 
-    final private RoleRepository roleRepository;
-    final private UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public RoleService(RoleRepository roleRepository, UserRepository userRepository) {

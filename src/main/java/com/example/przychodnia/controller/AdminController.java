@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
-    final private ContactDataService contactDataService;
-    final private UserService userService;
-    final private RoleService roleService;
+    private final ContactDataService contactDataService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     public AdminController(ContactDataService contactDataService, UserService userService, RoleService roleService) {

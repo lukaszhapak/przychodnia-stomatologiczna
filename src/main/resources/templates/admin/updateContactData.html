@@ -33,22 +33,5 @@
 
 </form>
 
-<form th:action="@{'/admin/addUser'}" th:object="${user}" method="post">
-    <h3>Dodaj konto użytkownika: </h3>
-    <table>
-        <tr>
-            <td>Nazwa użytkownika:</td>
-            <td><input title="nazwa" type="text" th:field="*{userName}"></td>
-        </tr>
-        <tr>
-            <td>Hasło:</td>
-            <td><input type="text" th:field="*{password}" title="haslo"></td>
-        </tr>
-    </table>
-
-    <input type="submit" value="Dodaj">
-
-</form>
-
 </body>
 </html>

@@ -6,9 +6,10 @@
     <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
-<div th:insert="fragments/topBar.html"></div>
 
-<form th:action="@{'/admin/addUser'}" th:object="${user}" method="post">
+<div th:insert="fragments/adminTopBar.html"></div>
+
+<form th:object="${user}" method="post">
     <h3>Dodaj konto użytkownika: </h3>
     <table>
         <tr>

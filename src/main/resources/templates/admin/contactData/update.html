@@ -9,7 +9,7 @@
 
 <div th:insert="fragments/adminTopBar.html"></div>
 
-<form th:action="@{'/admin/updateContactData/' + ${contactData.id}}" th:object="${contactData}" method="post">
+<form th:action="@{'/admin/contactData/update/' + ${contactData.id}}" th:object="${contactData}" method="post">
     <h3>Dane Kontaktowe: </h3>
     <table>
         <tr>

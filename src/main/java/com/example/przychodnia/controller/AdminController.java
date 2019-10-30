@@ -30,27 +30,27 @@ public class AdminController {
         return "admin/admin";
     }
 
-    @GetMapping("/updateContactData")
+    @GetMapping("/contactData/update")
     public String updateContactDataForm(Model model) {
         model.addAttribute(contactDataService.findAll().get(0));
-        return "/admin/updateContactData";
+        return "/admin/contactData/update";
     }
 
-    @PostMapping("/updateContactData/{id}")
+    @PostMapping("/contactData/update/{id}")
     public String updateContactData(ContactData contactData, @PathVariable String id) {
         contactDataService.save(contactData);
-        return "redirect:/admin";
+        return "/admin/contactData/updated";
     }
 
-    @GetMapping("/addUser")
+    @GetMapping("/user/add")
     public String addUserForm(Model model) {
         model.addAttribute(new User());
-        return "admin/addUser";
+        return "admin/user/add";
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/user/add")
     public String addUser(User user) {
         userService.save(user);
-        return "/admin/addUserConfirm";
+        return "/admin/user/added";
     }
 }

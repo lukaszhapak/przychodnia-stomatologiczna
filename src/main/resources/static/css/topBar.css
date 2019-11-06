@@ -1,15 +1,28 @@
-.container {
-    max-width: 1020px;
-    text-align: center;
+nav {
+    background: #526577;
+    color: white;
 }
 
-.top-bar {
-    color: white;
-    border-bottom: 1px black solid;
-    padding: 10px;
-    background-color: #34495e;
+nav .container {
+    width: 1000px;
+    margin: auto;
 }
 
-.top-bar a {
+li {
+    background: #ff6348;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+li:hover {
+    background: #c5533b;
+}
+
+a {
     color: white;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
 }

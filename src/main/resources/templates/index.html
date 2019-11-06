@@ -13,9 +13,7 @@
 <div th:insert="fragments/topBar.html"></div>
 
 <div class="contact-section">
-
     <h1 th:text="'Kontakt z przychodnią ' + ${contactData.name}"></h1>
-    <div class="border"></div>
     <form class="contact-form" th:action="@{/sendMessage}" th:object="${message}" method="post">
         <input th:field="*{name}" type="text" class="contact-form-text" placeholder="Imię i nazwisko">
         <input th:field="*{email}" type="email" class="contact-form-text" placeholder="Adres email">

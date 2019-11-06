@@ -24,7 +24,7 @@
             </li>
 
             <li sec:authorize="isAuthenticated()">
-                <a th:href="@{'#'}">Wyloguj się</a>
+                <a th:href="@{'/logout'}">Wyloguj się</a>
             </li>
             <li sec:authorize="isAnonymous()">
                 <a th:href="@{'#'}">Utwórz konto</a>

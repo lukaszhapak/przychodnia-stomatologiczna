@@ -4,13 +4,14 @@
 
 .contact-section h1 {
     text-align: center;
-    color: #ddd;
+    color: #34495e;
+    margin-bottom: 100px;
 }
 
 .border {
     width: 100px;
     height: 10px;
-    background: #34495e;
+    background: #2f3542;
     margin: 40px auto;
 }
 
@@ -55,5 +56,5 @@ textarea.contact-form-text {
 }
 
 .contact-form-btn:hover {
-    background: #2980b9;
+    background: #ff6348;
 }

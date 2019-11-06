@@ -8,21 +8,33 @@
 </head>
 <body>
 
-<div class="top-bar">
+<nav>
     <div class="container">
-        <a th:href="@{'/'}">Strona główna</a>
+        <ul>
+            <li>
+                <a th:href="@{'/'}">Strona główna</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin}">Panel administratora</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{'#'}">
+                    <i class="fas fa-user"></i> <span sec:authentication="name">Użytkownik</span>
+                </a>
+            </li>
 
-        <span sec:authorize="isAnonymous()">
-            <a th:href="@{/login}">Zaloguj się </a>
-        </span>
-
-        <span sec:authorize="isAuthenticated()">
-            <span sec:authentication="name">nazwa użytkownika</span>
-        </span>
-
-        <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">panel administratora</a>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{'#'}">Wyloguj się</a>
+            </li>
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{'#'}">Utwórz konto</a>
+            </li>
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">Zaloguj sie</a>
+            </li>
+        </ul>
     </div>
-</div>
+</nav>
 
 </body>
 </html>

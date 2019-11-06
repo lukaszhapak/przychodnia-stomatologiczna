@@ -2,13 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/topBar.css}">
 </head>
 <body>
 
-<a th:href="@{/}">strona główna</a> |
-<a th:href="@{/admin}">panel administratora</a> |
-<a th:href="@{/admin/user/list}">lista użytkowników</a> |
-<a th:href="@{/admin/contactData/update}">dane kontakowe</a>
+<nav>
+    <div class="container">
+        <ul>
+            <li>
+                <a th:href="@{/}">strona główna</a>
+            </li>
+            <li>
+                <a th:href="@{/admin}">panel administratora</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/user/list}">lista użytkowników</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/contactData/update}">dane kontakowe</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 </body>
 </html>

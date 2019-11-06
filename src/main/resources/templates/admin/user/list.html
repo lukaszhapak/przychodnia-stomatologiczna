@@ -9,7 +9,7 @@
 
 <div th:insert="fragments/adminTopBar.html"></div>
 
-<h3>Lista wszystkich użytkowników</h3>
+<h3>Lista użytkowników</h3>
 
 <table>
     <tr>
@@ -31,6 +31,8 @@
         <td><a th:href="@{'/admin/user/delete/' + ${user.id}}">x</a></td>
     </tr>
 </table>
+
+<a th:href="@{/admin/user/add}">dodaj nowego użytkownika</a>
 
 </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>receptionist</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+
+<div th:insert="fragments/receptionistTopBar.html"></div>
+
+<h3>Wiadomość</h3>
+<p th:text="'nadawca: ' + ${message.name}"></p>
+<p th:text="'email: ' + ${message.email}"></p>
+<p th:text="'numer telefonu : ' + ${message.number}"></p>
+<p th:text="${message.text}"></p>
+
+</body>
+</html>

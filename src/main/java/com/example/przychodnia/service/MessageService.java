@@ -24,4 +24,8 @@ public class MessageService {
     public List<Message> findAll() {
         return messageRepository.findAll();
     }
+
+    public Message findById(String id) {
+        return messageRepository.findById(Long.parseLong(id)).orElse(null);
+    }
 }

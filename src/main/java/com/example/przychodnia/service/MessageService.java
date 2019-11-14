@@ -5,6 +5,8 @@ import com.example.przychodnia.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MessageService {
 
@@ -17,5 +19,13 @@ public class MessageService {
 
     public void save(Message message) {
         messageRepository.save(message);
+    }
+
+    public List<Message> findAll() {
+        return messageRepository.findAll();
+    }
+
+    public Message findById(String id) {
+        return messageRepository.findById(Long.parseLong(id)).orElse(null);
     }
 }

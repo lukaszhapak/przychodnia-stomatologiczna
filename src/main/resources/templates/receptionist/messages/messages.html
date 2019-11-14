@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>receptionist</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+
+<div th:insert="fragments/receptionistTopBar.html"></div>
+
+<h3>Wiadomości</h3>
+
+<table>
+    <tr>
+        <th>Imię i nazwisko</th>
+        <th>email</th>
+        <th>numer telefonu</th>
+        <th>treść</th>
+    </tr>
+    <tr th:each="message : ${messages}">
+        <td th:text="${message.name}"></td>
+        <td th:text="${message.email}"></td>
+        <td th:text="${message.number}"></td>
+        <td><a th:href="@{'/receptionist/message/' + ${message.id}} ">Odczytaj wiadomość </a></td>
+    </tr>
+</table>
+
+</body>
+</html>

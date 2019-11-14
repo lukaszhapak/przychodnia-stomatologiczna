@@ -21,12 +21,14 @@ public class ReceptionistController {
     }
 
     @GetMapping("")
-    public String receptionist() {
+    public String receptionist(Model model) {
+        model.addAttribute("newMessages", messageService.newMessagesCount());
         return "receptionist/receptionist";
     }
 
     @GetMapping("/messages")
     public String messages(Model model) {
+        model.addAttribute("newMessages", messageService.newMessagesCount());
         model.addAttribute("messages", messageService.findAll());
         return "receptionist/messages/messages";
     }
@@ -36,6 +38,7 @@ public class ReceptionistController {
         Message message = messageService.findById(id);
         message.setOpened(true);
         messageService.save(message);
+        model.addAttribute("newMessages", messageService.newMessagesCount());
         model.addAttribute("message", message);
         return "receptionist/messages/message";
     }

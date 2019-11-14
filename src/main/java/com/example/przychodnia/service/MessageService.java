@@ -28,4 +28,8 @@ public class MessageService {
     public Message findById(String id) {
         return messageRepository.findById(Long.parseLong(id)).orElse(null);
     }
+
+    public int newMessagesCount() {
+        return messageRepository.newMessagesCount();
+    }
 }

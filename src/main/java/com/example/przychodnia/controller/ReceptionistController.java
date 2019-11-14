@@ -1,5 +1,6 @@
 package com.example.przychodnia.controller;
 
+import com.example.przychodnia.entity.Message;
 import com.example.przychodnia.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,10 @@ public class ReceptionistController {
 
     @GetMapping("/message/{id}")
     public String message(Model model, @PathVariable String id) {
-        model.addAttribute("message", messageService.findById(id));
+        Message message = messageService.findById(id);
+        message.setOpened(true);
+        messageService.save(message);
+        model.addAttribute("message", message);
         return "receptionist/messages/message";
     }
 }

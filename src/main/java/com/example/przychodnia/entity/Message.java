@@ -20,5 +20,6 @@ public class Message {
     private String email;
     private String number;
     private String text;
+    private boolean opened;
 
 }

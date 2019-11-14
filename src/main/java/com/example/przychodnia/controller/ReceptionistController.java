@@ -1,5 +1,6 @@
 package com.example.przychodnia.controller;
 
+import com.example.przychodnia.entity.Message;
 import com.example.przychodnia.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,19 +21,25 @@ public class ReceptionistController {
     }
 
     @GetMapping("")
-    public String receptionist() {
+    public String receptionist(Model model) {
+        model.addAttribute("newMessages", messageService.newMessagesCount());
         return "receptionist/receptionist";
     }
 
     @GetMapping("/messages")
     public String messages(Model model) {
+        model.addAttribute("newMessages", messageService.newMessagesCount());
         model.addAttribute("messages", messageService.findAll());
         return "receptionist/messages/messages";
     }
 
     @GetMapping("/message/{id}")
     public String message(Model model, @PathVariable String id) {
-        model.addAttribute("message", messageService.findById(id));
+        Message message = messageService.findById(id);
+        message.setOpened(true);
+        messageService.save(message);
+        model.addAttribute("newMessages", messageService.newMessagesCount());
+        model.addAttribute("message", message);
         return "receptionist/messages/message";
     }
 }

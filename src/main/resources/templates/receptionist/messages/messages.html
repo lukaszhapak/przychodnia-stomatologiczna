@@ -13,12 +13,15 @@
 
 <table>
     <tr>
+        <th>Przeczytana</th>
         <th>Imię i nazwisko</th>
         <th>email</th>
         <th>numer telefonu</th>
         <th>treść</th>
     </tr>
     <tr th:each="message : ${messages}">
+        <td th:if="${message.opened}">tak</td>
+        <td th:if="!${message.opened}">nie</td>
         <td th:text="${message.name}"></td>
         <td th:text="${message.email}"></td>
         <td th:text="${message.number}"></td>

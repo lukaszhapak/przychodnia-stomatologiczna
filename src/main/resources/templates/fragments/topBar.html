@@ -30,7 +30,7 @@
                 <a th:href="@{'/logout'}">Wyloguj się</a>
             </li>
             <li sec:authorize="isAnonymous()">
-                <a th:href="@{'#'}">Utwórz konto</a>
+                <a th:href="@{'/register'}">Utwórz konto</a>
             </li>
             <li sec:authorize="isAnonymous()">
                 <a th:href="@{/login}">Zaloguj sie</a>

@@ -4,6 +4,7 @@ import com.example.przychodnia.entity.Message;
 import com.example.przychodnia.entity.User;
 import com.example.przychodnia.service.ContactDataService;
 import com.example.przychodnia.service.MessageService;
+import com.example.przychodnia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,13 @@ public class HomePageController {
 
     private final ContactDataService contactDataService;
     private final MessageService messageService;
+    private final UserService userService;
 
     @Autowired
-    public HomePageController(ContactDataService contactDataService, MessageService messageService) {
+    public HomePageController(ContactDataService contactDataService, MessageService messageService, UserService userService) {
         this.contactDataService = contactDataService;
         this.messageService = messageService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -30,9 +33,15 @@ public class HomePageController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String registerForm(Model model) {
         model.addAttribute("user", new User());
         return "user/register";
+    }
+
+    @PostMapping("/register")
+    public String register(User user) {
+        userService.save(user);
+        return "redirect:/";
     }
 
     @PostMapping("/sendMessage")

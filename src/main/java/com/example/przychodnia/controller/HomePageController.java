@@ -1,6 +1,7 @@
 package com.example.przychodnia.controller;
 
 import com.example.przychodnia.entity.Message;
+import com.example.przychodnia.entity.User;
 import com.example.przychodnia.service.ContactDataService;
 import com.example.przychodnia.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,12 @@ public class HomePageController {
         model.addAttribute("contactData", contactDataService.findAll().get(0));
         model.addAttribute(new Message());
         return "index";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("user", new User());
+        return "user/register";
     }
 
     @PostMapping("/sendMessage")

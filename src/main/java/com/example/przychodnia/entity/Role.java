@@ -19,8 +19,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String roleName;
+    private String simplifiedRoleName;
 
-    public Role(String roleName) {
+    public Role(String roleName, String simplifiedRoleName) {
         this.roleName = roleName;
+        this.simplifiedRoleName = simplifiedRoleName;
     }
 }

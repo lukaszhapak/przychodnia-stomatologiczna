@@ -26,8 +26,8 @@
                   th:text="${!iterStat.last} ? ${role.roleName} + ', ': ${role.roleName}">
             </span>
         </td>
-        <td><a th:href="@{'/admin/user/role/grant/' + ${user.id}}">x</a></td>
-        <td><a th:if="${user.roles.size()} > 0" th:href="@{'/admin/user/role/delete/' + ${user.id}}">x</a></td>
+        <td><a th:href="@{'/admin/user/' + ${user.id} + '/role/grant'}">x</a></td>
+        <td><a th:href="@{'/admin/user/' + ${user.id}} + '/role/delete'" th:if="${user.roles.size()} > 0">x</a></td>
         <td><a th:href="@{'/admin/user/' + ${user.id} + '/delete'}">x</a></td>
     </tr>
 </table>

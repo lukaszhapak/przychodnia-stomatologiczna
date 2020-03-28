@@ -12,7 +12,7 @@
 
     <h3>Dodaj uprawnienia użytkownikowi: </h3>
     <select th:field="*{id}" title="role">
-        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.roleName}"></option>
+        <option th:each="role : ${roles}" th:text="${role.simplifiedRoleName}" th:value="${role.id}"></option>
     </select>
     <input type="submit" value="Dodaj">
 

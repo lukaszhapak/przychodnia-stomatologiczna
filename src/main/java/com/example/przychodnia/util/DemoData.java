@@ -30,11 +30,11 @@ public class DemoData implements CommandLineRunner {
         }
 
         if (roleService.count() == 0) {
-            roleService.save(new Role("ROLE_ADMIN"));
-            roleService.save(new Role("ROLE_DENTIST"));
-            roleService.save(new Role("ROLE_ASSISTANT"));
-            roleService.save(new Role("ROLE_RECEPTIONIST"));
-            roleService.save(new Role("ROLE_PATIENT"));
+            roleService.save(new Role("ROLE_ADMIN", "Administrator"));
+            roleService.save(new Role("ROLE_DENTIST", "Dentysta"));
+            roleService.save(new Role("ROLE_ASSISTANT", "Asystent"));
+            roleService.save(new Role("ROLE_RECEPTIONIST", "Recepcjonista"));
+            roleService.save(new Role("ROLE_PATIENT", "Pacjent"));
         }
 
         if (userService.count() == 0) {

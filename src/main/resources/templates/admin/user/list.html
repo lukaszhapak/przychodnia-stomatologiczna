@@ -23,7 +23,7 @@
         <td th:text="${user.userName}"></td>
         <td>
             <span th:each="role, iterStat : ${user.roles}"
-                  th:text="${!iterStat.last} ? ${role.roleName} + ', ': ${role.roleName}">
+                  th:text="${!iterStat.last} ? ${role.simplifiedRoleName} + ', ': ${role.simplifiedRoleName}">
             </span>
         </td>
         <td><a th:href="@{'/admin/user/' + ${user.id} + '/role/grant'}">x</a></td>

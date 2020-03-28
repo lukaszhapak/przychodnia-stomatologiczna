@@ -7,7 +7,7 @@ import com.example.przychodnia.service.ContactDataService;
 import com.example.przychodnia.service.MessageService;
 import com.example.przychodnia.service.RoleService;
 import com.example.przychodnia.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Collections;
 
 @Controller
+@RequiredArgsConstructor
 public class HomePageController {
 
     private final ContactDataService contactDataService;
     private final MessageService messageService;
     private final UserService userService;
     private final RoleService roleService;
-
-    @Autowired
-    public HomePageController(ContactDataService contactDataService, MessageService messageService, UserService userService,
-                              RoleService roleService) {
-        this.contactDataService = contactDataService;
-        this.messageService = messageService;
-        this.userService = userService;
-        this.roleService = roleService;
-    }
 
     @GetMapping("/")
     public String index(Model model) {

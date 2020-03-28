@@ -4,23 +4,19 @@ import com.example.przychodnia.entity.Role;
 import com.example.przychodnia.entity.User;
 import com.example.przychodnia.repository.RoleRepository;
 import com.example.przychodnia.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RoleService {
 
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
 
-    @Autowired
-    public RoleService(RoleRepository roleRepository, UserRepository userRepository) {
-        this.roleRepository = roleRepository;
-        this.userRepository = userRepository;
-    }
 
     public void save(Role role) {
         roleRepository.save(role);

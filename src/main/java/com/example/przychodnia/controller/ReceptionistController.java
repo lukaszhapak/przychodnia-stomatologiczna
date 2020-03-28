@@ -2,7 +2,7 @@ package com.example.przychodnia.controller;
 
 import com.example.przychodnia.entity.Message;
 import com.example.przychodnia.service.MessageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/receptionist")
+@RequiredArgsConstructor
 public class ReceptionistController {
 
     private final MessageService messageService;
-
-    @Autowired
-    public ReceptionistController(MessageService messageService) {
-        this.messageService = messageService;
-    }
 
     @GetMapping("")
     public String receptionist(Model model) {

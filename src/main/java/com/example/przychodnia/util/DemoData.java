@@ -6,7 +6,7 @@ import com.example.przychodnia.entity.User;
 import com.example.przychodnia.service.ContactDataService;
 import com.example.przychodnia.service.RoleService;
 import com.example.przychodnia.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,20 +15,13 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class DemoData implements CommandLineRunner {
 
     private final ContactDataService contactDataService;
     private final RoleService roleService;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public DemoData(ContactDataService contactDataService, RoleService roleService, UserService userService, PasswordEncoder passwordEncoder) {
-        this.contactDataService = contactDataService;
-        this.roleService = roleService;
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public void run(String... args) {

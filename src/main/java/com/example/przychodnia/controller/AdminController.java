@@ -6,7 +6,7 @@ import com.example.przychodnia.entity.User;
 import com.example.przychodnia.service.ContactDataService;
 import com.example.przychodnia.service.RoleService;
 import com.example.przychodnia.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,18 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminController {
 
     private final ContactDataService contactDataService;
     private final UserService userService;
     private final RoleService roleService;
-
-    @Autowired
-    public AdminController(ContactDataService contactDataService, UserService userService, RoleService roleService) {
-        this.contactDataService = contactDataService;
-        this.userService = userService;
-        this.roleService = roleService;
-    }
 
     @GetMapping("")
     public String admin() {

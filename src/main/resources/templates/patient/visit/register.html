@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Pacjenta</title>
+</head>
+<body>
+
+<div th:insert="fragments/patientTopBar.html"></div>
+
+<p>Wybierz dentystę do którego chcesz się zapisać na wizytę</p>
+
+<div th:each="dentist : ${dentists}">
+    <a th:href="@{|/patient/visit/register/dentist/${dentist.id}|}"><span th:text="${dentist.userName}"></span></a>
+
+</div>
+
+</body>
+</html>

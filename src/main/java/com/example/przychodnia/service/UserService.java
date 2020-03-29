@@ -31,6 +31,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<User> findAllDentists() {
+        return userRepository.findAllUsersByRolesRoleName("ROLE_DENTIST");
+    }
+
     public void deleteById(String id) {
         userRepository.deleteById(Long.parseLong(id));
     }

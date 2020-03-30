@@ -10,9 +10,9 @@
 <div th:insert="fragments/receptionistTopBar.html"></div>
 
 <h3>Wiadomość</h3>
-<p th:text="'nadawca: ' + ${message.name}"></p>
-<p th:text="'email: ' + ${message.email}"></p>
-<p th:text="'numer telefonu : ' + ${message.number}"></p>
+<p th:text="|nadawca: ${message.name}|"></p>
+<p th:text="|email: ${message.email}|"></p>
+<p th:text="|numer telefonu: ${message.number}|"></p>
 <p th:text="${message.text}"></p>
 
 </body>

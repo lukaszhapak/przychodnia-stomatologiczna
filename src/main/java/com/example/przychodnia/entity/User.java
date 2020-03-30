@@ -14,9 +14,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String email;
     private String userName;
     private String password;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String personalIdentityNumber;
+    private String city;
+    private String street;
+    private String houseNumber;
+    private String flatNumber;
+    private String postalCode;
+    private String phone;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",

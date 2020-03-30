@@ -7,9 +7,11 @@ import com.example.przychodnia.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Collections;
 
 @Controller
@@ -26,7 +28,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(User user) {
+    public String register(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user/register";
+        }
         Role role = roleService.findByRoleName("ROLE_PATIENT").orElse(null);
         user.setRoles(Collections.singletonList(role));
         userService.save(user);

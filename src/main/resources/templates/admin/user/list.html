@@ -14,13 +14,33 @@
 <table>
     <tr>
         <th>Nazwa użytkownika</th>
+        <th>Email</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>PESEL</th>
+        <th>Miejscowosc</th>
+        <th>Ulica</th>
+        <th>Numer lokalu</th>
+        <th>Numer mieszkania</th>
+        <th>Kod pocztowy</th>
+        <th>Numer telefonu</th>
         <th>Uprawnienia</th>
         <th>Nadaj uprawnienia</th>
-        <th>zabierz uprawnienia</th>
+        <th>Zabierz uprawnienia</th>
         <th>Usuń użytkownika</th>
     </tr>
     <tr th:each="user : ${users}">
         <td th:text="${user.userName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.personalIdentityNumber}"></td>
+        <td th:text="${user.city}"></td>
+        <td th:text="${user.street}"></td>
+        <td th:text="${user.houseNumber}"></td>
+        <td th:text="${user.flatNumber}"></td>
+        <td th:text="${user.postalCode}"></td>
+        <td th:text="${user.phone}"></td>
         <td>
             <span th:each="role, iterStat : ${user.roles}"
                   th:text="${!iterStat.last} ? ${role.simplifiedRoleName} + ', ': ${role.simplifiedRoleName}">
@@ -31,8 +51,8 @@
         <td><a th:href="@{|/admin/user/${user.id}/delete|}">x</a></td>
     </tr>
 </table>
-
-<a th:href="@{/admin/user/add}">dodaj nowego użytkownika</a>
+<br><br>
+<a th:href="@{/admin/user/add}">Dodaj nowego użytkownika</a>
 
 </body>
 </html>

@@ -16,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(max = 24, message = "nazwa użytkownika nie może być dłuższa niż 24 znaków")
+    @Size(max = 24, message = "nazwa użytkownika nie może być dłuższa niż 24 znaki")
     @Size(min = 1, message = "podaj nazwę użytkownika")
     private String userName;
     @Size(min = 8, message = "hasło musi się składać z conajmniej 8 znaków")

@@ -1,14 +1,17 @@
 package com.example.przychodnia.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.example.przychodnia.entity.Role;
 import com.example.przychodnia.entity.User;
 import com.example.przychodnia.repository.RoleRepository;
 import com.example.przychodnia.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +32,18 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public Optional<User> findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public Optional<User> findByPersonalIdentityNumber(String personalIdentityNumber) {
+        return userRepository.findByPersonalIdentityNumber(personalIdentityNumber);
     }
 
     public void deleteById(String id) {

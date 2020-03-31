@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,8 +29,29 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid User user, BindingResult bindingResult) {
+    public String register(@Valid User user, BindingResult bindingResult, Model model) {
+
+        boolean error = false;
+        HashMap<String, String> errors = new HashMap<>();
+
+        if (userService.findByUserName(user.getUserName()).isPresent()) {
+            errors.put("userName", "użytkownik o takim loginie już istnieje");
+            error = true;
+        }
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            errors.put("email", "użytkownik o takim adresie email już istnieje");
+            error = true;
+        }
+        if (userService.findByPersonalIdentityNumber(user.getPersonalIdentityNumber()).isPresent()) {
+            errors.put("personalIdentityNumber", "użytkownik o takim numerze PESEL już istnieje");
+            error = true;
+        }
         if (bindingResult.hasErrors()) {
+            error = true;
+        }
+
+        if (error) {
+            model.addAttribute("uniqueErrors", errors);
             return "user/register";
         }
         Role role = roleService.findByRoleName("ROLE_PATIENT").orElse(null);

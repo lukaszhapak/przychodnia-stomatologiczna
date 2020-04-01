@@ -2,29 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>admin</title>
-    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <div th:replace="fragments/admin :: head"></div>
 </head>
 <body>
 
-<div th:insert="fragments/adminTopBar.html"></div>
+<nav th:replace="fragments/admin :: navbar"></nav>
 
-<form th:object="${user}" method="post">
-    <h3>Dodaj konto użytkownika: </h3>
-    <table>
-        <tr>
-            <td>Nazwa użytkownika:</td>
-            <td><input title="nazwa" type="text" th:field="*{userName}"></td>
-        </tr>
-        <tr>
-            <td>Hasło:</td>
-            <td><input type="text" th:field="*{password}" title="haslo"></td>
-        </tr>
-    </table>
+<div class="container">
+	<form th:object="${user}" method="post">
+		<br>
+	    <h3 class="text-center">Dodaj konto użytkownika: </h3>
+		<br>
+	    <table class="table table-striped">
+	        <tr>
+	            <td>Nazwa użytkownika:</td>
+	            <td><input class="form-control" title="nazwa" type="text" th:field="*{userName}"></td>
+	        </tr>
+	        <tr>
+	            <td>Hasło:</td>
+	            <td><input class="form-control" type="password" th:field="*{password}" title="haslo"></td>
+	        </tr>
+	    </table>
+	
+	    <input class="btn btn-primary float-right" type="submit" value="Dodaj">
+	
+	</form>
+</div>
 
-    <input type="submit" value="Dodaj">
-
-</form>
-
+<div th:replace="fragments/admin :: scripts"></div>
 </body>
 </html>

@@ -2,37 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>admin</title>
-    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <div th:replace="fragments/admin :: head"></div>
 </head>
 <body>
 
-<div th:insert="fragments/adminTopBar.html"></div>
+<nav th:replace="fragments/admin :: navbar"></nav>
 
 <form method="post" th:action="@{|/admin/contactData/update/${contactData.id}|}" th:object="${contactData}">
-    <h3>Dane Kontaktowe: </h3>
-    <table>
-        <tr>
-            <td>Nazwa Przychodni:</td>
-            <td><input title="nazwa" id="name" type="text" th:field="*{name}"></td>
-        </tr>
-        <tr>
-            <td>Numer telefonu:</td>
-            <td><input title="numer" type="text" th:field="*{number}"></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input title="email" type="text" th:field="*{email}"></td>
-        </tr>
-        <tr>
-            <td>Adres:</td>
-            <td><input title="adress" type="text" th:field="*{address}"></td>
-        </tr>
-    </table>
 
-    <input type="submit" value="Zaaktualizuj dane">
+	<br>
+    <h3 class="text-center">Dane Kontaktowe: </h3>
+    <br>
+    <div class="container"> 
+	    <table class="table table-striped">
+	        <tr>
+	            <td>Nazwa Przychodni:</td>
+	            <td><input class="form-control" title="nazwa" id="name" type="text" th:field="*{name}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer telefonu:</td>
+	            <td><input class="form-control" title="numer" type="text" th:field="*{number}"></td>
+	        </tr>
+	        <tr>
+	            <td>Email:</td>
+	            <td><input class="form-control" title="email" type="text" th:field="*{email}"></td>
+	        </tr>
+	        <tr>
+	            <td>Adres:</td>
+	            <td><input class="form-control" title="adress" type="text" th:field="*{address}"></td>
+	        </tr>
+	    </table>
+	    <br>
+	    <input class="btn btn-primary float-right" type="submit" value="Zaaktualizuj dane">
+    </div>
+
 
 </form>
 
+<div th:replace="fragments/admin :: scripts"></div>
 </body>
 </html>

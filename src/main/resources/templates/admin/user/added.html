@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>admin</title>
+    <div th:replace="fragments/admin :: head"></div>
 </head>
 <body>
 
-<div th:insert="fragments/adminTopBar.html"></div>
+<nav th:replace="fragments/admin :: navbar"></nav>
 
-<h3>Utworzono konto użytkownika o nazwie: <span th:text="${user.userName}"></span></h3>
+<br>
+<h3 class="text-center">Utworzono konto użytkownika o nazwie: <span th:text="${user.userName}"></span></h3>
 
+<div th:replace="fragments/admin :: scripts"></div>
 </body>
 </html>

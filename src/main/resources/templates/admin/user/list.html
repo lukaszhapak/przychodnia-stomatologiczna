@@ -2,57 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>admin</title>
-    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 
 <div th:insert="fragments/adminTopBar.html"></div>
 
-<h3>Lista użytkowników</h3>
-
-<table>
-    <tr>
-        <th>Nazwa użytkownika</th>
-        <th>Email</th>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>PESEL</th>
-        <th>Miejscowosc</th>
-        <th>Ulica</th>
-        <th>Numer lokalu</th>
-        <th>Numer mieszkania</th>
-        <th>Kod pocztowy</th>
-        <th>Numer telefonu</th>
-        <th>Uprawnienia</th>
-        <th>Nadaj uprawnienia</th>
-        <th>Zabierz uprawnienia</th>
-        <th>Usuń użytkownika</th>
-    </tr>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.userName}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.lastName}"></td>
-        <td th:text="${user.personalIdentityNumber}"></td>
-        <td th:text="${user.city}"></td>
-        <td th:text="${user.street}"></td>
-        <td th:text="${user.houseNumber}"></td>
-        <td th:text="${user.flatNumber}"></td>
-        <td th:text="${user.postalCode}"></td>
-        <td th:text="${user.phone}"></td>
-        <td>
-            <span th:each="role, iterStat : ${user.roles}"
-                  th:text="${!iterStat.last} ? ${role.simplifiedRoleName} + ', ': ${role.simplifiedRoleName}">
-            </span>
-        </td>
-        <td><a th:href="@{|/admin/user/${user.id}/role/grant|}">x</a></td>
-        <td><a th:href="@{|/admin/user/${user.id}/role/delete|}" th:if="${user.roles.size()} > 0">x</a></td>
-        <td><a th:href="@{|/admin/user/${user.id}/delete|}">x</a></td>
-    </tr>
-</table>
-<br><br>
-<a th:href="@{/admin/user/add}">Dodaj nowego użytkownika</a>
+<div class="container">
+		
+	<br>
+	<h3 class="text-center">Lista użytkowników</h3>
+	<br>
+	<br>
+	
+	<table class="table table-striped">
+	    <tr class="thead-dark">
+	        <th>Nazwa użytkownika</th>
+	        <th>Imię</th>
+	        <th>Nazwisko</th>
+	        <th>PESEL</th>
+	        <th>Uprawnienia</th>
+	        <th>Wyświetl dane</th>
+	    </tr>
+	    <tr th:each="user : ${users}">
+	        <td th:text="${user.userName}"></td>
+	        <td th:text="${user.firstName}"></td>
+	        <td th:text="${user.lastName}"></td>
+	        <td th:text="${user.personalIdentityNumber}"></td>
+	        <td>
+	            <span th:each="role, iterStat : ${user.roles}"
+	                  th:text="${!iterStat.last} ? ${role.simplifiedRoleName} + ', ': ${role.simplifiedRoleName}">
+	            </span>
+	        </td>
+	        <td class="text-center">
+	        	<a class="btn btn-primary" th:href="@{|/admin/user/${user.id}|}">Info</a>
+        	</td>
+	    </tr>
+	</table>
+	
+	<br><br>
+	
+	<a class="btn btn-primary float-right" th:href="@{/admin/user/add}">Dodaj nowego użytkownika</a>
+	
+</div>
 
 </body>
 </html>

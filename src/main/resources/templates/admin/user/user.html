@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<div th:replace="fragments/admin :: head"></div>
+</head>
+<body>
+
+<nav th:replace="fragments/admin :: navbar"></nav>
+
+<div class="container">
+	<br>
+	<br>
+	
+	<table class="table table-striped">
+	    <tr>
+	    	<td>Nazwa użytkownika:</td>
+	        <td th:text="${user.userName}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Imię:</td>
+	        <td th:text="${user.firstName}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Nazwisko:</td>
+	        <td th:text="${user.lastName}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Email:</td>
+	        <td th:text="${user.email}"></td>
+	    </tr>
+	    <tr>
+	    	<td>PESEL:</td>
+	        <td th:text="${user.personalIdentityNumber}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Miejscowosc:</td>
+	        <td th:text="${user.city}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Ulica:</td>
+	        <td th:text="${user.street}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Numer lokalu:</td>
+	        <td th:text="${user.houseNumber}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Numer mieszkania:</td>
+	        <td th:text="${user.flatNumber}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Kod pocztowy:</td>
+	        <td th:text="${user.postalCode}"></td>
+	    </tr>
+	    <tr>
+	    	<td>Numer telefonu:</td>
+	        <td th:text="${user.phone}"></td>
+	    </tr>
+	</table>
+
+	<br>
+	
+	<a class="btn btn-primary" th:href="@{|/admin/user/${user.id}|}">Edytuj</a>
+	<a class="btn btn-danger" th:href="@{|/admin/user/${user.id}/delete|}">Usuń</a>
+
+	
+	
+</div>
+
+<div th:replace="fragments/admin :: scripts"></div>
+</body>
+</html>

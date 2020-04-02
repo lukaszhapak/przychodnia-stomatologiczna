@@ -47,7 +47,7 @@ public class AdminController {
     @GetMapping("/user/{id}")
     public String user(@PathVariable String id, Model model) {
         model.addAttribute("user", userService.findById(id));
-        return "admin/user/add";
+        return "admin/user/user";
     }
     @GetMapping("/user/add")
     public String addUserForm(Model model) {

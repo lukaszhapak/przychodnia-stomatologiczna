@@ -1,18 +1,22 @@
 package com.example.przychodnia.controller;
 
-import com.example.przychodnia.entity.ContactData;
-import com.example.przychodnia.entity.Role;
-import com.example.przychodnia.entity.User;
-import com.example.przychodnia.service.ContactDataService;
-import com.example.przychodnia.service.RoleService;
-import com.example.przychodnia.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.przychodnia.entity.ContactData;
+import com.example.przychodnia.entity.Role;
+import com.example.przychodnia.entity.User;
+import com.example.przychodnia.repository.UserRepository;
+import com.example.przychodnia.service.ContactDataService;
+import com.example.przychodnia.service.RoleService;
+import com.example.przychodnia.service.UserService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,10 +44,15 @@ public class AdminController {
         return "admin/contactData/updated";
     }
 
+    @GetMapping("/user/{id}")
+    public String user(@RequestParam String id, Model model) {
+        model.addAttribute("user", userService.findById(id));
+        return "admin/user/add";
+    }
     @GetMapping("/user/add")
     public String addUserForm(Model model) {
-        model.addAttribute(new User());
-        return "admin/user/add";
+    	model.addAttribute(new User());
+    	return "admin/user/add";
     }
 
     @PostMapping("/user/add")

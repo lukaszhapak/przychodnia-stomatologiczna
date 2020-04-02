@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <div th:replace="fragments/admin :: head"></div>
+<head th:replace="fragments/admin :: head">
 </head>
 <body>
 
@@ -10,7 +8,7 @@
 
 <form th:if="${roles.size()} > 0" th:object="${role}" method="post">
 
-    <h3>Dodaj uprawnienia u≈ºytkownikowi: </h3>
+    <h3>Dodaj uprawnienia uøytkownikowi: </h3>
     <select th:field="*{id}" title="role">
         <option th:each="role : ${roles}" th:text="${role.simplifiedRoleName}" th:value="${role.id}"></option>
     </select>
@@ -18,7 +16,7 @@
 
 </form>
 
-<h3 th:if="${roles.size()} == 0">Wszystkie uprawnienia zosta≈Çy nadane temu u≈ºytkownikowi</h3>
+<h3 th:if="${roles.size()} == 0">Wszystkie uprawnienia zosta≥y nadane temu uøytkownikowi</h3>
 
 <div th:replace="fragments/admin :: scripts"></div>
 

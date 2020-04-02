@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <div th:replace="fragments/admin :: head"></div>
+<head th:replace="fragments/admin :: head">
 </head>
 <body>
 
@@ -10,7 +8,7 @@
 
 <form th:object="${role}" method="post">
 
-    <h3>Zabierz uprawnienia u≈ºytkownikowi: </h3>
+    <h3>Zabierz uprawnienia uøytkownikowi: </h3>
     <select th:field="*{id}" title="role">
         <option th:each="role : ${roles}" th:text="${role.simplifiedRoleName}" th:value="${role.id}"></option>
     </select>

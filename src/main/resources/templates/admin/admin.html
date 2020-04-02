@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <div th:replace="fragments/admin :: head"></div>
-</head>
+<head th:replace="fragments/admin :: head"></head>
 <body>
 
 <nav th:replace="fragments/admin :: navbar"></nav>
 
 <br>
-<h2 class="text-center"> Witaj w panelu administracyjnym </h2>
+<h2 class="text-center"> Witaj w panelu administracyjnym</h2>
 
 <div th:replace="fragments/admin :: scripts"></div>
 </body>

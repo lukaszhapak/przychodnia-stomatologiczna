@@ -42,10 +42,15 @@ public class AdminController {
         return "admin/contactData/updated";
     }
 
+    @GetMapping("/user/{id}")
+    public String user(@PathVariable String id, Model model) {
+        model.addAttribute("user", userService.findById(id));
+        return "admin/user/user";
+    }
     @GetMapping("/user/add")
     public String addUserForm(Model model) {
-        model.addAttribute(new User());
-        return "admin/user/add";
+    	model.addAttribute(new User());
+    	return "admin/user/add";
     }
 
     @PostMapping("/user/add")

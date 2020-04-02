@@ -57,6 +57,14 @@
 	    	<td>Numer telefonu:</td>
 	        <td th:text="${user.phone}"></td>
 	    </tr>
+	    <tr>
+	    	<td>Uprawnienia:</td>
+	        <td>
+	        	<span th:each="role, iterStat : ${user.roles}"
+	                  th:text="${!iterStat.last} ? ${role.simplifiedRoleName} + ', ': ${role.simplifiedRoleName}">
+	            </span>
+            </td>
+	    </tr>
 	</table>
 
 	<br>

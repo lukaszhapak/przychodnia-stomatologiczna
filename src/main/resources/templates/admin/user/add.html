@@ -22,6 +22,46 @@
 	            <td>Hasło:</td>
 	            <td><input class="form-control" type="password" th:field="*{password}" title="haslo"></td>
 	        </tr>
+	        <tr>
+	            <td>Imię:</td>
+	            <td><input class="form-control" type="text" th:field="*{firstName}"></td>
+	        </tr>
+	        <tr>
+	            <td>Nazwisko:</td>
+	            <td><input class="form-control" type="text" th:field="*{lastName}"></td>
+	        </tr>
+	        <tr>
+	            <td>Email:</td>
+	            <td><input class="form-control" type="text" th:field="*{email}"></td>
+	        </tr>
+	        <tr>
+	            <td>PESEL:</td>
+	            <td><input class="form-control" type="number" th:field="*{personalIdentityNumber}"></td>
+	        </tr>
+	        <tr>
+	            <td>Miejscowosc:</td>
+	            <td><input class="form-control" type="text" th:field="*{city}"></td>
+	        </tr>
+	        <tr>
+	            <td>Ulica:</td>
+	            <td><input class="form-control" type="text" th:field="*{street}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer lokalu:</td>
+	            <td><input class="form-control" type="text" th:field="*{houseNumber}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer mieszkania:</td>
+	            <td><input class="form-control" type="text" th:field="*{flatNumber}"></td>
+	        </tr>
+	        <tr>
+	            <td>Kod pocztowy:</td>
+	            <td><input class="form-control" type="text" th:field="*{postalCode}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer telefonu:</td>
+	            <td><input class="form-control" type="text" th:field="*{phone}"></td>
+	        </tr>
 	    </table>
 	
 	    <input class="btn btn-primary float-right" type="submit" value="Dodaj">

@@ -60,6 +60,18 @@ public class AdminController {
 		return "admin/user/added";
 	}
 
+	@GetMapping("/user/{id}/update")
+	public String updateUserForm(Model model, @PathVariable String id) {
+		model.addAttribute(userService.findById(id));
+		return "admin/user/add";
+	}
+
+	@PostMapping("/user/{id}/update")
+	public String updateUser(User user) {
+		userService.save(user);
+		return "admin/user/added";
+	}
+
 	@GetMapping("/user/list")
 	public String list(Model model) {
 		model.addAttribute("users", userService.findAll());

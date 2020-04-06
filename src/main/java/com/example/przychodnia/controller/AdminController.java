@@ -63,13 +63,13 @@ public class AdminController {
 	@GetMapping("/user/{id}/update")
 	public String updateUserForm(Model model, @PathVariable String id) {
 		model.addAttribute(userService.findById(id));
-		return "admin/user/add";
+		return "admin/user/update";
 	}
 
 	@PostMapping("/user/{id}/update")
 	public String updateUser(User user) {
-		userService.save(user);
-		return "admin/user/added";
+		userService.update(user);
+		return "admin/user/updated";
 	}
 
 	@GetMapping("/user/list")

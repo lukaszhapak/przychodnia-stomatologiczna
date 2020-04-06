@@ -25,6 +25,10 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
+    
+    public void update(User user) {
+    	userRepository.save(user);
+    }
 
     public long count() {
         return userRepository.count();

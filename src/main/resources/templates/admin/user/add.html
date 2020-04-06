@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
-<head th:replace="fragments/admin :: head">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:include="fragments/admin :: header"></th:block>
 </head>
 <body>
 
@@ -9,16 +11,56 @@
 <div class="container">
 	<form th:object="${user}" method="post">
 		<br>
-	    <h3 class="text-center">Dodaj konto uøytkownika: </h3>
+	    <h3 class="text-center">Dodaj konto u≈ºytkownika: </h3>
 		<br>
 	    <table class="table table-striped">
 	        <tr>
-	            <td>Nazwa uøytkownika:</td>
+	            <td>Nazwa u≈ºytkownika:</td>
 	            <td><input class="form-control" title="nazwa" type="text" th:field="*{userName}"></td>
 	        </tr>
 	        <tr>
-	            <td>Has≥o:</td>
+	            <td>Has≈Ço:</td>
 	            <td><input class="form-control" type="password" th:field="*{password}" title="haslo"></td>
+	        </tr>
+	        <tr>
+	            <td>Imiƒô:</td>
+	            <td><input class="form-control" type="text" th:field="*{firstName}"></td>
+	        </tr>
+	        <tr>
+	            <td>Nazwisko:</td>
+	            <td><input class="form-control" type="text" th:field="*{lastName}"></td>
+	        </tr>
+	        <tr>
+	            <td>Email:</td>
+	            <td><input class="form-control" type="text" th:field="*{email}"></td>
+	        </tr>
+	        <tr>
+	            <td>PESEL:</td>
+	            <td><input class="form-control" type="number" th:field="*{personalIdentityNumber}"></td>
+	        </tr>
+	        <tr>
+	            <td>Miejscowosc:</td>
+	            <td><input class="form-control" type="text" th:field="*{city}"></td>
+	        </tr>
+	        <tr>
+	            <td>Ulica:</td>
+	            <td><input class="form-control" type="text" th:field="*{street}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer lokalu:</td>
+	            <td><input class="form-control" type="text" th:field="*{houseNumber}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer mieszkania:</td>
+	            <td><input class="form-control" type="text" th:field="*{flatNumber}"></td>
+	        </tr>
+	        <tr>
+	            <td>Kod pocztowy:</td>
+	            <td><input class="form-control" type="text" th:field="*{postalCode}"></td>
+	        </tr>
+	        <tr>
+	            <td>Numer telefonu:</td>
+	            <td><input class="form-control" type="text" th:field="*{phone}"></td>
 	        </tr>
 	    </table>
 	

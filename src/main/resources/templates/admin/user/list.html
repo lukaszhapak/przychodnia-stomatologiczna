@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
 	<meta charset="UTF-8">
-	<div th:replace="fragments/admin :: head"></div>
+	<th:block th:include="fragments/admin :: header"></th:block>
 </head>
 <body>
 
@@ -43,6 +43,7 @@
 	<br><br>
 	
 	<a class="btn btn-primary float-right" th:href="@{/admin/user/add}">Dodaj nowego użytkownika</a>
+	<br><br>
 	
 </div>
 

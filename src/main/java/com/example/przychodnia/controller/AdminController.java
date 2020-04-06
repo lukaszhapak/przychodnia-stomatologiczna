@@ -21,79 +21,80 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final ContactDataService contactDataService;
-    private final UserService userService;
-    private final RoleService roleService;
+	private final ContactDataService contactDataService;
+	private final UserService userService;
+	private final RoleService roleService;
 
-    @GetMapping("")
-    public String admin() {
-        return "admin/admin";
-    }
+	@GetMapping("")
+	public String admin() {
+		return "admin/admin";
+	}
 
-    @GetMapping("/contactData/update")
-    public String updateContactDataForm(Model model) {
-        model.addAttribute(contactDataService.findAll().get(0));
-        return "admin/contactData/update";
-    }
+	@GetMapping("/contactData/update")
+	public String updateContactDataForm(Model model) {
+		model.addAttribute(contactDataService.findAll().get(0));
+		return "admin/contactData/update";
+	}
 
-    @PostMapping("/contactData/update/{id}")
-    public String updateContactData(ContactData contactData, @PathVariable String id) {
-        contactDataService.save(contactData);
-        return "admin/contactData/updated";
-    }
+	@PostMapping("/contactData/update/{id}")
+	public String updateContactData(ContactData contactData, @PathVariable String id) {
+		contactDataService.save(contactData);
+		return "admin/contactData/updated";
+	}
 
-    @GetMapping("/user/{id}")
-    public String user(@PathVariable String id, Model model) {
-        model.addAttribute("user", userService.findById(id));
-        return "admin/user/user";
-    }
-    @GetMapping("/user/add")
-    public String addUserForm(Model model) {
-    	model.addAttribute(new User());
-    	return "admin/user/add";
-    }
+	@GetMapping("/user/{id}")
+	public String user(@PathVariable String id, Model model) {
+		model.addAttribute("user", userService.findById(id));
+		return "admin/user/user";
+	}
 
-    @PostMapping("/user/add")
-    public String addUser(User user) {
-        userService.save(user);
-        return "admin/user/added";
-    }
+	@GetMapping("/user/add")
+	public String addUserForm(Model model) {
+		model.addAttribute(new User());
+		return "admin/user/add";
+	}
 
-    @GetMapping("/user/list")
-    public String list(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "admin/user/list";
-    }
+	@PostMapping("/user/add")
+	public String addUser(User user) {
+		userService.save(user);
+		return "admin/user/added";
+	}
 
-    @GetMapping("/user/{id}/delete")
-    public String delete(@PathVariable String id) {
-        userService.deleteById(id);
-        return "admin/user/deleted";
-    }
+	@GetMapping("/user/list")
+	public String list(Model model) {
+		model.addAttribute("users", userService.findAll());
+		return "admin/user/list";
+	}
 
-    @GetMapping("/user/{id}/role/grant")
-    public String grantForm(Model model, @PathVariable String id) {
-        model.addAttribute("roles", roleService.findAll(id));
-        model.addAttribute("role", new Role());
-        return "admin/user/role/grant";
-    }
+	@GetMapping("/user/{id}/delete")
+	public String delete(@PathVariable String id) {
+		userService.deleteById(id);
+		return "admin/user/deleted";
+	}
 
-    @PostMapping("/user/{id}/role/grant")
-    public String grant(@PathVariable String id, Role role) {
-        userService.addRole(role, id);
-        return "admin/user/role/granted";
-    }
+	@GetMapping("/user/{id}/role/grant")
+	public String grantForm(Model model, @PathVariable String id) {
+		model.addAttribute("roles", roleService.findAll(id));
+		model.addAttribute("role", new Role());
+		return "admin/user/role/grant";
+	}
 
-    @GetMapping("/user/{id}/role/delete")
-    public String takeForm(Model model, @PathVariable String id) {
-        model.addAttribute("roles", userService.findById(id).getRoles());
-        model.addAttribute("role", new Role());
-        return "admin/user/role/delete";
-    }
+	@PostMapping("/user/{id}/role/grant")
+	public String grant(@PathVariable String id, Role role) {
+		userService.addRole(role, id);
+		return "admin/user/role/granted";
+	}
 
-    @PostMapping("/user/{id}/role/delete")
-    public String take(@PathVariable String id, Role role) {
-        userService.deleteRole(role, id);
-        return "admin/user/role/deleted";
-    }
+	@GetMapping("/user/{id}/role/delete")
+	public String takeForm(Model model, @PathVariable String id) {
+		model.addAttribute("roles", userService.findById(id).getRoles());
+		model.addAttribute("role", new Role());
+		return "admin/user/role/delete";
+	}
+
+	@PostMapping("/user/{id}/role/delete")
+	public String take(@PathVariable String id, Role role) {
+		userService.deleteRole(role, id);
+		return "admin/user/role/deleted";
+	}
 }

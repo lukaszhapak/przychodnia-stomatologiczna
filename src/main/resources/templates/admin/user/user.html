@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
 	<meta charset="UTF-8">
-	<div th:replace="fragments/admin :: head"></div>
+	<th:block th:include="fragments/admin :: header"></th:block>
 </head>
 <body>
 
@@ -67,12 +67,14 @@
 	</table>
 
 	<br>
+	<div class="float-right">
+		<a class="btn btn-primary" th:href="@{|/admin/user/${user.id}|}">Edytuj</a>
+		<a class="btn btn-primary" th:href="@{|/admin/user/${user.id}/role/grant|}">Nadaj uprawnienia</a>
+		<a class="btn btn-danger" th:href="@{|/admin/user/${user.id}/role/delete|}">Zabierz uprawnienia</a>
+		<a class="btn btn-danger" th:href="@{|/admin/user/${user.id}/delete|}">Usuń</a>
+	</div>
+	<br><br>
 	
-	<a class="btn btn-primary" th:href="@{|/admin/user/${user.id}|}">Edytuj</a>
-	<a class="btn btn-primary" th:href="@{|/admin/user/${user.id}/role/grant|}">Nadaj uprawnienia</a>
-	<a class="btn btn-danger" th:href="@{|/admin/user/${user.id}/role/delete|}">Zabierz uprawnienia</a>
-	<a class="btn btn-danger" th:href="@{|/admin/user/${user.id}/delete|}">Usuń</a>
-
 </div>
 
 <div th:replace="fragments/admin :: scripts"></div>

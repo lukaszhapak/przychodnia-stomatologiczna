@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:include="fragments/admin :: header"></th:block>
+</head>
+<body>
+
+<nav th:replace="fragments/admin :: navbar"></nav>
+
+<br>
+<h3 class="text-center">Zaaktualizowano dane użytkownika</h3>
+
+<div th:replace="fragments/admin :: scripts"></div>
+</body>
+</html>

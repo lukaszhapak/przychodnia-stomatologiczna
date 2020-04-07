@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface VisitsCalendarRepository extends JpaRepository<VisitsCalendar, Long> {
 
-    @Query(value = "SELECT * FROM visits_calendar WHERE id_patient = :patient",
+    @Query(value = "SELECT * FROM visits_calendar WHERE patient_id = :patient order by date",
             nativeQuery = true)
     Iterable<VisitsCalendar> findByIdPatient(@Param("patient") Long patient);
 }

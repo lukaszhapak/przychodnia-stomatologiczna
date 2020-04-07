@@ -18,7 +18,7 @@
     <tr th:each="visit : ${visits}">
         <td th:text="${#temporals.format(visit.getDate(), 'dd-MM-yyyy')}"></td>
         <td th:text="${visit.getStart()}"></td>
-        <td th:text="${visit.getDoctor().getUserName()}"></td>
+        <td th:text="${visit.getDoctor().getFirstName()}+' '+${visit.getDoctor().getLastName()}"></td>
         <td>
             <span th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
                  <a th:href="@{'/patient/visit/delete/'+ ${visit.id}}">Odwołaj</a>

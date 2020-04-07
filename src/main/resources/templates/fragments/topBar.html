@@ -23,6 +23,9 @@
             <li sec:authorize="hasRole('RECEPTIONIST')">
                 <a th:href="@{/receptionist}">Panel recepcjonisty</a>
             </li>
+            <li sec:authorize="hasRole('DENTIST')">
+                <a th:href="@{/dentist}">Panel lekarza</a>
+            </li>
             <li sec:authorize="isAuthenticated()">
                 <a th:href="@{'#'}">
                     <i class="fas fa-user"></i> <span sec:authentication="name">Użytkownik</span>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <meta charset="UTF-8">
+    <title>Moj kalendarz</title>
+</head>
+<body>
+<div th:insert="fragments/dentistTopBar.html"></div>
+<h1>Mój kalendarz</h1>
+<div>
+<ul>
+    <li th:each="visit : ${visits}">
+        <span th:text="${visit.getDate()}+' '+${visit.getStart()}+' '+${visit.getEnd()}+' '+${visit.getPatientId()}"></span>
+    </li>
+</ul>
+    <span th:text="${#dates.createNow()}">Aktualna data: </span>
+    <table>
+        <tr>
+            <th>Godz</th>
+            <th>PN</th>
+            <th>WT</th>
+            <th>SR</th>
+            <th>CZ</th>
+            <th>PT</th>
+            <th>SB</th>
+            <th>ND</th>
+        </tr>
+        <tr>
+            <td>Wizyty</td>
+            <td th:each="day : ${#numbers.sequence(1,7)}" th:value="day" th:text="${today}"></td>
+        </tr>
+        <tr th:each="i: ${#numbers.sequence(1,20)}" th:value="${i}">
+            <td th:text="${open.plusMinutes((iterator*i)-iterator)}+' - '+${open.plusMinutes(iterator*i)}" ></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

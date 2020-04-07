@@ -21,6 +21,10 @@ public class VisitsCalendarService {
         return visitsCalendarRepository.findByIdPatient(Long.parseLong(id));
     }
 
+    public Iterable<VisitsCalendar> findByDoctorId(String id){
+        return visitsCalendarRepository.findByIdDoctor(Long.parseLong(id));
+    }
+
     public VisitsCalendar findById(Long id){
         return visitsCalendarRepository.findById(id).orElse(null);
     }
@@ -32,4 +36,5 @@ public class VisitsCalendarService {
     public void deleteVisitsById(String id){
         visitsCalendarRepository.deleteById(Long.parseLong(id));
     }
+
 }

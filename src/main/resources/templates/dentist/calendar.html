@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script type="text/javascript">
+        function translate(input) {
+            switch (input) {
+                case "WEDNESDAY" :
+                    return "ŚRODA";
+                    break;
+                default:
+                    return "INNE";
+            }
+        }
+    </script>
     <link rel="stylesheet" th:href="@{/css/table.css}">
     <meta charset="UTF-8">
     <title>Moj kalendarz</title>
@@ -9,32 +20,32 @@
 <div th:insert="fragments/dentistTopBar.html"></div>
 <h1>Mój kalendarz</h1>
 <div>
-<ul>
-    <li th:each="visit : ${visits}">
-        <span th:text="${visit.getDate()}+' '+${visit.getStart()}+' '+${visit.getEnd()}+' '+${visit.getPatientId()}"></span>
-    </li>
-</ul>
-    <span th:text="${#dates.createNow()}">Aktualna data: </span>
+    <p th:text="'Dzisiaj jest: '+${#dates.format(#dates.createNow(), 'dd-MM-yyyy')}"></p>
+    <input type="button" value="do przodu">
+    <input type="button" value="do tyłu">
     <table>
         <tr>
-            <th>Godz</th>
-            <th th:each="day : ${#numbers.sequence(0,6)}" th:value="day" th:text="${today.plus(day).name()}"></th>
+            <th>Godzina</th>
+            <th>PONIEDZIAŁEK</th>
+            <th>WTOREK</th>
+            <th>ŚRODA</th>
+            <th>CZWARTEK</th>
+            <th>PIĄTEK</th>
+            <th>SOBOTA</th>
+            <th>NIEDZIELA</th>
         </tr>
         <tr>
             <td></td>
-            <td th:each="i : ${#numbers.sequence(0,6)}" th:value="day" th:text="${#temporals.format(now.plusDays(i), 'dd-MM')}"></td>
+            <td th:each="i : ${#numbers.sequence(1,7)}" th:value="day" th:text="${#temporals.format(now.plusDays(i).minusDays(today), 'dd-MM')}"></td>
         </tr>
         <tr th:each="i: ${#numbers.sequence(1,20)}" th:value="${i}">
             <td th:text="${open.plusMinutes((iterator*i)-iterator)}+' - '+${open.plusMinutes(iterator*i)}" ></td>
-            <td th:each="j : ${#numbers.sequence(0,6)}">
-                <span th:each="vist : ${visits}" th:if="${#temporals.format(vist.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(now.plusDays(j), 'yyyy-MM-dd')} and ${vist.getStart()} == ${open.plusMinutes((iterator*i)-iterator)} "
-                      th:text="${vist.getPatientId()}"></span>
+            <td th:each="j : ${#numbers.sequence(1,7)}">
+                <span th:each="vist : ${visits}" th:if="${#temporals.format(vist.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(now.plusDays(j).minusDays(today), 'yyyy-MM-dd')} and ${vist.getStart()} == ${open.plusMinutes((iterator*i)-iterator)} "
+                      th:text="${vist.getPatient().getFirstName()+' '+vist.getPatient().getLastName()}" style="background-color: #526577"></span>
             </td>
         </tr>
     </table>
 </div>
-<script th:inline="javascript">
-    var dzien = [[${today}]];
-</script>
 </body>
 </html>

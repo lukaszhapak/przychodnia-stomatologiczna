@@ -18,7 +18,9 @@ public class VisitsCalendar {
     private LocalDateTime date;
     private LocalTime start;
     private LocalTime end;
-    private Long patientId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
+    private User patient;
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private User doctor;

@@ -40,13 +40,13 @@ public class DentistController {
         String id_user = user2.get().getId().toString();
         model.addAttribute("visits",visitsCalendarService.findByDoctorId(id_user));
         model.addAttribute("now",LocalDateTime.now());
-        model.addAttribute("today", LocalDateTime.now().getDayOfWeek());
+        model.addAttribute("today", LocalDateTime.now().getDayOfWeek().getValue());
         model.addAttribute("mounth",LocalDateTime.now().getMonth().getValue());
         model.addAttribute("dayMouth", LocalDateTime.now().getDayOfMonth());
         model.addAttribute("open",open);
         model.addAttribute("close",close);
         model.addAttribute("difrence",difrence);
-        model.addAttribute("iterator",iterator);
+        model.addAttribute("iterator",iterator);;
         return "dentist/calendar";
     }
 }

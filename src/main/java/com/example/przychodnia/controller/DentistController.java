@@ -35,7 +35,6 @@ public class DentistController {
         LocalTime open = contactDataService.findAll().get(0).getOpen();
         LocalTime close = contactDataService.findAll().get(0).getClose();
         LocalTime difrence = close.minusHours(open.getHour());
-        LocalDateTime.now().ge
         int iterator = 30;
         Optional<User> user2 =  userService.findByUsername(currentUser.getUsername());
         String id_user = user2.get().getId().toString();

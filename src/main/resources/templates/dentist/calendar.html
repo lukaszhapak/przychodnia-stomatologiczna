@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script type="text/javascript">
-        function translate(input) {
-            switch (input) {
-                case "WEDNESDAY" :
-                    return "ŚRODA";
-                    break;
-                default:
-                    return "INNE";
-            }
-        }
-    </script>
     <link rel="stylesheet" th:href="@{/css/table.css}">
     <meta charset="UTF-8">
     <title>Moj kalendarz</title>
@@ -21,8 +10,6 @@
 <h1>Mój kalendarz</h1>
 <div>
     <p th:text="'Dzisiaj jest: '+${#dates.format(#dates.createNow(), 'dd-MM-yyyy')}"></p>
-    <input type="button" value="do przodu">
-    <input type="button" value="do tyłu">
     <table>
         <tr>
             <th>Godzina</th>
@@ -36,12 +23,12 @@
         </tr>
         <tr>
             <td></td>
-            <td th:each="i : ${#numbers.sequence(1,7)}" th:value="day" th:text="${#temporals.format(now.plusDays(i).minusDays(today), 'dd-MM')}"></td>
+            <td th:each="i : ${#numbers.sequence(1,7)}" th:value="day" th:text="${#temporals.format(today.plusDays(i).minusDays(dayOfWeek), 'dd-MM')}"></td>
         </tr>
         <tr th:each="i: ${#numbers.sequence(1,20)}" th:value="${i}">
-            <td th:text="${open.plusMinutes((iterator*i)-iterator)}+' - '+${open.plusMinutes(iterator*i)}" ></td>
+            <td th:text="${open.plusMinutes((difrence*i)-difrence)}+' - '+${open.plusMinutes(difrence*i)}" ></td>
             <td th:each="j : ${#numbers.sequence(1,7)}">
-                <span th:each="vist : ${visits}" th:if="${#temporals.format(vist.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(now.plusDays(j).minusDays(today), 'yyyy-MM-dd')} and ${vist.getStart()} == ${open.plusMinutes((iterator*i)-iterator)} "
+                <span th:each="vist : ${visits}" th:if="${#temporals.format(vist.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and ${vist.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} "
                       th:text="${vist.getPatient().getFirstName()+' '+vist.getPatient().getLastName()}" style="background-color: #526577"></span>
             </td>
         </tr>

@@ -33,20 +33,14 @@ public class DentistController {
     @GetMapping("/calendar")
     public String myCalendar(@AuthenticationPrincipal MyUserDetails currentUser, Model model){
         LocalTime open = contactDataService.findAll().get(0).getOpen();
-        LocalTime close = contactDataService.findAll().get(0).getClose();
-        LocalTime difrence = close.minusHours(open.getHour());
-        int iterator = 30;
+        int defoultTimeVisit = 30;
         Optional<User> user2 =  userService.findByUsername(currentUser.getUsername());
         String id_user = user2.get().getId().toString();
         model.addAttribute("visits",visitsCalendarService.findByDoctorId(id_user));
-        model.addAttribute("now",LocalDateTime.now());
-        model.addAttribute("today", LocalDateTime.now().getDayOfWeek().getValue());
-        model.addAttribute("mounth",LocalDateTime.now().getMonth().getValue());
-        model.addAttribute("dayMouth", LocalDateTime.now().getDayOfMonth());
+        model.addAttribute("today",LocalDateTime.now());
+        model.addAttribute("dayOfWeek", LocalDateTime.now().getDayOfWeek().getValue());
         model.addAttribute("open",open);
-        model.addAttribute("close",close);
-        model.addAttribute("difrence",difrence);
-        model.addAttribute("iterator",iterator);;
+        model.addAttribute("difrence",defoultTimeVisit);
         return "dentist/calendar";
     }
 }

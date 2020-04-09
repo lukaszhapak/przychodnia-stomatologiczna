@@ -1,19 +1,11 @@
 package com.example.przychodnia.entity;
 
-import java.util.List;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-import lombok.Data;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Size(max = 24, message = "nazwa użytkownika nie może być dłuższa niż 24 znaki")
-    @Size(min = 1, message = "podaj nazwę użytkownika")
+    @Size(min = 3, message = "podaj nazwę użytkownika")
     private String userName;
     @Size(min = 8, message = "hasło musi się składać z conajmniej 8 znaków")
     private String password;

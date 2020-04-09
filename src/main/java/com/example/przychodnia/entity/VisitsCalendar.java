@@ -24,5 +24,4 @@ public class VisitsCalendar {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private User doctor;
-
 }

@@ -92,7 +92,7 @@ public class AdminController {
     }
 
     @PostMapping("/user/{id}/update")
-    public String updateUser(@PathVariable String id, User user, Model model, BindingResult bindingResult) {
+    public String updateUser(@PathVariable String id, @Valid User user, Model model, BindingResult bindingResult) {
         boolean error = false;
         HashMap<String, String> errors = new HashMap<>();
         User oldUser = userService.findById(id);

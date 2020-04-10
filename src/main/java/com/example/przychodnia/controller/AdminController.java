@@ -92,7 +92,37 @@ public class AdminController {
     }
 
     @PostMapping("/user/{id}/update")
-    public String updateUser(User user) {
+    public String updateUser(@PathVariable String id, User user, Model model, BindingResult bindingResult) {
+        boolean error = false;
+        HashMap<String, String> errors = new HashMap<>();
+        User oldUser = userService.findById(id);
+
+        if (userService.findByUserName(user.getUserName()).isPresent()) {
+            if (!oldUser.getUserName().equals(user.getUserName())) {
+                errors.put("userName", "użytkownik o takim loginie już istnieje");
+                error = true;
+            }
+        }
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            if (!oldUser.getEmail().equals(user.getEmail())) {
+                errors.put("email", "użytkownik o takim adresie email już istnieje");
+                error = true;
+            }
+        }
+        if (userService.findByPersonalIdentityNumber(user.getPersonalIdentityNumber()).isPresent()) {
+            if (!oldUser.getPersonalIdentityNumber().equals(user.getPersonalIdentityNumber())) {
+                errors.put("personalIdentityNumber", "użytkownik o takim numerze PESEL już istnieje");
+                error = true;
+            }
+        }
+        if (bindingResult.hasErrors()) {
+            error = true;
+        }
+
+        if (error) {
+            model.addAttribute("uniqueErrors", errors);
+            return "admin/user/update";
+        }
         userService.update(user);
         return "admin/user/updated";
     }

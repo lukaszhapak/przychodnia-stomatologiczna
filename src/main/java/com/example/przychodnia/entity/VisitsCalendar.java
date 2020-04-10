@@ -1,15 +1,13 @@
 package com.example.przychodnia.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
-@Setter
-@Getter
+@Data
 public class VisitsCalendar {
 
     @Id

@@ -18,6 +18,7 @@
         <th>email</th>
         <th>numer telefonu</th>
         <th>treść</th>
+        <th>usuń</th>
     </tr>
     <tr th:each="message : ${messages}">
         <td th:if="${message.opened}">tak</td>
@@ -26,6 +27,7 @@
         <td th:text="${message.email}"></td>
         <td th:text="${message.number}"></td>
         <td><a th:href="@{|/receptionist/message/${message.id}|} ">Odczytaj wiadomość </a></td>
+        <td><a th:href="@{|/receptionist/message/${message.id}/delete|} ">X</a></td>
     </tr>
 </table>
 

@@ -38,4 +38,10 @@ public class ReceptionistController {
         model.addAttribute("message", message);
         return "receptionist/messages/message";
     }
+
+    @GetMapping("/message/{id}/delete")
+    public String delete(@PathVariable String id) {
+        messageService.deleteById(id);
+        return "redirect:/receptionist/messages";
+    }
 }

@@ -28,4 +28,8 @@ public class MessageService {
     public int newMessagesCount() {
         return messageRepository.newMessagesCount();
     }
+
+    public void deleteById(String id) {
+        messageRepository.deleteById(Long.parseLong(id));
+    }
 }

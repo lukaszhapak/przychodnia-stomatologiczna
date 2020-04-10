@@ -10,4 +10,9 @@ public interface VisitsCalendarRepository extends JpaRepository<VisitsCalendar, 
     @Query(value = "SELECT * FROM visits_calendar WHERE patient_id = :patient order by date",
             nativeQuery = true)
     Iterable<VisitsCalendar> findByIdPatient(@Param("patient") Long patient);
+
+    @Query(value = "SELECT * FROM visits_calendar WHERE doctor_id = :doctor",
+            nativeQuery = true)
+    Iterable<VisitsCalendar> findByIdDoctor(@Param("doctor") Long doctor);
+
 }

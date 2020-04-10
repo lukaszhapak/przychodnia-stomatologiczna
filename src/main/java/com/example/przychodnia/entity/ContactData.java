@@ -7,6 +7,8 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+import java.time.LocalTime;
+
 @Entity
 @Data
 public class ContactData {
@@ -18,4 +20,6 @@ public class ContactData {
     private String number;
     private String email;
     private String address;
+    private LocalTime open;
+    private LocalTime close;
 }

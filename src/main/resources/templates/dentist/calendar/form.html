@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Moj kalendarz</title>
+</head>
+<body>
+<div th:insert="fragments/dentistTopBar.html"></div>
+<div class="container">
+    <h1>Mój kalendarz</h1>
+    <br>
+    <form method="post" th:action="@{/dentist/calendar/week}" >
+        <span>Wybierz tydzień</span>
+        <input type="date"  th:value="${inputDateString}" name="inputDateString">
+        <input type="submit" value="Przejdź">
+    </form>
+</div>
+</body>
+</html>
+<style>
+    .container{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>

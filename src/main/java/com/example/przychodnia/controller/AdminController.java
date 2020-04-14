@@ -124,7 +124,7 @@ public class AdminController {
             return "admin/user/update";
         }
         userService.update(user);
-        return "admin/user/updated";
+        return "redirect:/admin/user/" + id;
     }
 
     @GetMapping("/user/list")

@@ -82,7 +82,7 @@ public class AdminController {
             return "admin/user/add";
         }
         userService.save(user);
-        return "admin/user/added";
+        return "redirect:/admin/user/list";
     }
 
     @GetMapping("/user/{id}/update")

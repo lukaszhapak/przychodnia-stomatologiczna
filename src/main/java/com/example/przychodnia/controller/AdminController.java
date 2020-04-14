@@ -149,7 +149,7 @@ public class AdminController {
     @PostMapping("/user/{id}/role/grant")
     public String grant(@PathVariable String id, Role role) {
         userService.addRole(role, id);
-        return "admin/user/role/granted";
+        return "redirect:/admin/user/" + id;
     }
 
     @GetMapping("/user/{id}/role/delete")

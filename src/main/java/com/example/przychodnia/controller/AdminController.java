@@ -41,7 +41,7 @@ public class AdminController {
     @PostMapping("/contactData/update/{id}")
     public String updateContactData(ContactData contactData, @PathVariable String id) {
         contactDataService.save(contactData);
-        return "admin/contactData/updated";
+        return "redirect:/admin/contactData/update";
     }
 
     @GetMapping("/user/{id}")
@@ -82,7 +82,7 @@ public class AdminController {
             return "admin/user/add";
         }
         userService.save(user);
-        return "admin/user/added";
+        return "redirect:/admin/user/list";
     }
 
     @GetMapping("/user/{id}/update")
@@ -124,7 +124,7 @@ public class AdminController {
             return "admin/user/update";
         }
         userService.update(user);
-        return "admin/user/updated";
+        return "redirect:/admin/user/" + id;
     }
 
     @GetMapping("/user/list")
@@ -136,7 +136,7 @@ public class AdminController {
     @GetMapping("/user/{id}/delete")
     public String delete(@PathVariable String id) {
         userService.deleteById(id);
-        return "admin/user/deleted";
+        return "redirect:/admin/user/list";
     }
 
     @GetMapping("/user/{id}/role/grant")
@@ -149,7 +149,7 @@ public class AdminController {
     @PostMapping("/user/{id}/role/grant")
     public String grant(@PathVariable String id, Role role) {
         userService.addRole(role, id);
-        return "admin/user/role/granted";
+        return "redirect:/admin/user/" + id;
     }
 
     @GetMapping("/user/{id}/role/delete")
@@ -162,6 +162,6 @@ public class AdminController {
     @PostMapping("/user/{id}/role/delete")
     public String take(@PathVariable String id, Role role) {
         userService.deleteRole(role, id);
-        return "admin/user/role/deleted";
+        return "redirect:/admin/user/" + id;
     }
 }

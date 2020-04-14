@@ -162,6 +162,6 @@ public class AdminController {
     @PostMapping("/user/{id}/role/delete")
     public String take(@PathVariable String id, Role role) {
         userService.deleteRole(role, id);
-        return "admin/user/role/deleted";
+        return "redirect:/admin/user/" + id;
     }
 }

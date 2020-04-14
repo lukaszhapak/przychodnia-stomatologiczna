@@ -41,7 +41,7 @@ public class AdminController {
     @PostMapping("/contactData/update/{id}")
     public String updateContactData(ContactData contactData, @PathVariable String id) {
         contactDataService.save(contactData);
-        return "admin/contactData/updated";
+        return "redirect:/admin/contactData/update";
     }
 
     @GetMapping("/user/{id}")

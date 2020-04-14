@@ -136,7 +136,7 @@ public class AdminController {
     @GetMapping("/user/{id}/delete")
     public String delete(@PathVariable String id) {
         userService.deleteById(id);
-        return "admin/user/deleted";
+        return "redirect:/admin/user/list";
     }
 
     @GetMapping("/user/{id}/role/grant")

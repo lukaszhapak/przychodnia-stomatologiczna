@@ -37,10 +37,11 @@
             <td th:each="j : ${#numbers.sequence(1,7)}">
                 <span th:each="vist : ${visits}" th:if="${#temporals.format(vist.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
                 ${vist.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} "
-                      th:text="${vist.getPatient().getFirstName()+' '+vist.getPatient().getLastName()}"></span>
-            </td>
+                      th:text="${vist.getPatient().getFirstName()+' '+vist.getPatient().getLastName()}">
+                </span>
+        </td>
         </tr>
-    </table>
+        </table>
     </div>
 </div>
 </body>

@@ -8,24 +8,12 @@
 <div th:insert="fragments/dentistTopBar.html"></div>
 <div>
 <h1>Grafik dentysty</h1>
-    <table>
-        <tr>
-            <th>Data</th>
-            <th>Rozpoczącie</th>
-            <th>Zakończenie</th>
-            <th>Opcje</th>
-        </tr>
-        <tr>
-            <td th:each="day : ${#numbers.sequence(1,7)}" th:text="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}"></td>
-        </tr>
-    </table>
-<span th:each="item : ${schedules}">
-    <p th:text="${item.getId()}"></p>
-    <input type="text" placeholder="start">
-    <input type="text" placeholder="koniec">
-    <input type="button" value="Edytuj">
     <br>
-</span>
+    <form method="post" th:action="@{/dentist/schedule/week}" >
+        <span>Wybierz tydzień</span>
+        <input type="date"  th:value="${inputDateString}" name="inputDateString" required>
+        <input type="submit" value="Przejdź">
+    </form>
 </div>
 </body>
 </html>

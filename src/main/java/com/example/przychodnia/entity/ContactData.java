@@ -1,9 +1,6 @@
 package com.example.przychodnia.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -20,6 +17,9 @@ public class ContactData {
     private String number;
     private String email;
     private String address;
-    private LocalTime open;
-    private LocalTime close;
+    @Column(name = "open", columnDefinition = "time default '08:00'")
+    private LocalTime open = LocalTime.of(8,0);
+    @Column(name = "close", columnDefinition = "time default '18:00'")
+    private LocalTime close = LocalTime.of(18,0);
+
 }

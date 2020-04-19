@@ -27,14 +27,15 @@ public class HomePageController {
         if(currentUser != null) {
         	message.setName(currentUser.getUser().getFirstName() + " " + currentUser.getUser().getLastName());        	
         	message.setEmail(currentUser.getUser().getEmail());        	
-        	message.setNumber(currentUser.getUser().getPhone());        	
+        	message.setNumber(currentUser.getUser().getPhone());      
         }
 		model.addAttribute(message);
         return "index";
     }
 
     @PostMapping("/sendMessage")
-    public String sendMessage(Message message) {
+    public String sendMessage(Message message, @AuthenticationPrincipal MyUserDetails currentUser) {
+    	message.setUser(currentUser.getUser());
         messageService.save(message);
         return "redirect:/";
     }

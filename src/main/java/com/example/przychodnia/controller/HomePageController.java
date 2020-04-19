@@ -1,5 +1,7 @@
 package com.example.przychodnia.controller;
 
+import com.example.przychodnia.entity.MyUserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +21,21 @@ public class HomePageController {
     private final MessageService messageService;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @AuthenticationPrincipal MyUserDetails currentUser) {
         model.addAttribute("contactData", contactDataService.findAll().get(0));
-        model.addAttribute(new Message());
+        Message message = new Message();
+        if(currentUser != null) {
+        	message.setName(currentUser.getUser().getFirstName() + " " + currentUser.getUser().getLastName());        	
+        	message.setEmail(currentUser.getUser().getEmail());        	
+        	message.setNumber(currentUser.getUser().getPhone());      
+        }
+		model.addAttribute(message);
         return "index";
     }
 
     @PostMapping("/sendMessage")
-    public String sendMessage(Message message) {
+    public String sendMessage(Message message, @AuthenticationPrincipal MyUserDetails currentUser) {
+    	message.setUser(currentUser.getUser());
         messageService.save(message);
         return "redirect:/";
     }

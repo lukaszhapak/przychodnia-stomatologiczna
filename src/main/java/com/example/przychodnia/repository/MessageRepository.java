@@ -13,4 +13,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     @Query("select count(id) from Message m where opened = false")
     int newMessagesCount();
+
+    List<Message> findAllByUserId(Long id);
 }

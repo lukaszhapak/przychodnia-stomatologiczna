@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,6 +28,10 @@ public class MyUserDetails implements UserDetails {
         return list;
     }
 
+    public User getUser() {
+    	return user;
+    }
+    
     @Override
     public String getPassword() {
         return user.getPassword();

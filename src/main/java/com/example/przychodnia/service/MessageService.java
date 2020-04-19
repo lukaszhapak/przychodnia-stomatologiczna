@@ -24,6 +24,10 @@ public class MessageService {
     public Message findById(String id) {
         return messageRepository.findById(Long.parseLong(id)).orElse(null);
     }
+    
+    public List<Message> findAllByUserId(Long id) {
+    	return messageRepository.findAllByUserId(id);
+    }
 
     public int newMessagesCount() {
         return messageRepository.newMessagesCount();

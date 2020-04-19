@@ -27,7 +27,7 @@
                 <a th:href="@{/dentist}">Panel lekarza</a>
             </li>
             <li sec:authorize="isAuthenticated()">
-                <a th:href="@{'#'}">
+                <a th:href="@{'/user'}">
                     <i class="fas fa-user"></i> <span sec:authentication="name">Użytkownik</span>
                 </a>
             </li>

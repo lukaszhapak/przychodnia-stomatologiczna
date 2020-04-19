@@ -26,7 +26,7 @@ public class MessageService {
     }
     
     public List<Message> findAllByUserId(Long id) {
-    	return messageRepository.findAllByUserId(id);
+    	return messageRepository.findAllByUserIdOrderByCreateDateTimeDesc(id);
     }
 
     public int newMessagesCount() {

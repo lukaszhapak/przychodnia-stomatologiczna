@@ -17,10 +17,7 @@
 	
 	<div  th:each="message : ${messages}">
 		<div class="card">
-			<h5 class="card-header" >
-				<span th:text="|${message.createDateTime.year}-${message.createDateTime.monthValue}-${message.createDateTime.dayOfMonth} |"></span>
-				<span th:text="|${message.createDateTime.hour}:${message.createDateTime.minute}"></span>
-			</h5>
+			<h5 class="card-header" th:text="${#temporals.format(message.createDateTime, 'dd-MM-yyyy HH:mm')}"></h5>
 			<div class="card-body">
 				<p class="card-text" th:text="${message.text}"></p>
 			</div>

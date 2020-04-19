@@ -1,10 +1,14 @@
 package com.example.przychodnia.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
@@ -22,5 +26,7 @@ public class Message {
     private boolean opened;
     @ManyToOne
     private User user;
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
 
 }

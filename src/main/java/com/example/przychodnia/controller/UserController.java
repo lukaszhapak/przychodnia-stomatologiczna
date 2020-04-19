@@ -27,6 +27,11 @@ public class UserController {
         model.addAttribute("user", new User());
         return "user/register";
     }
+    
+    @GetMapping("/user")
+    public String index() {
+    	return "user/user";
+    }
 
     @PostMapping("/register")
     public String register(@Valid User user, BindingResult bindingResult, Model model) {

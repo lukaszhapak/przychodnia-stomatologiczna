@@ -23,6 +23,9 @@ public class VisitsCalendar {
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private User doctor;
 
+    public VisitsCalendar() {
+    }
+
     public VisitsCalendar(LocalDateTime date, LocalTime start, LocalTime end, User doctor) {
         this.date = date;
         this.start = start;

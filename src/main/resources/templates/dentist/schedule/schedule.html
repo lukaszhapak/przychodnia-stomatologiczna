@@ -8,10 +8,10 @@
 <body>
 <div th:insert="fragments/dentistTopBar.html"></div>
 <div class="container">
-    <h1>Tak wygląda Twój tydzień</h1>
+    <h1>Tak wygląda tydzień</h1>
     <br>
-    <span>Wybierz tydzień</span>
     <form method="post" th:action="@{/dentist/schedule/week}">
+        <span>Wybierz tydzień</span>
         <input type="date" name="inputDateString" required>
         <input type="submit" value="Przejdź">
     </form>
@@ -41,7 +41,7 @@
                             th:if="${#temporals.format(today.plusDays(i).minusDays(dayOfWeek), 'yyyy-MM-dd')} == ${#temporals.format(schedule.getDate(),'yyyy-MM-dd')}">
                         <td th:text="${schedule.getStartDay()}">Start day</td>
                         <td th:text="${schedule.getEndDay()}">End day</td>
-                        <td><a th:href="@{'/dentist/schedule/update/' + ${schedule.getId()}}">Edytuj</a></td>
+                        <td><a th:href="@{'/dentist/schedule/week/' + ${#temporals.format(schedule.getDate(),'yyyy-MM-dd')}}">Edytuj</a></td>
                     </th:block>
                 </th:block>
             </tr>
@@ -50,3 +50,11 @@
 </div>
 </body>
 </html>
+<style>
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>

@@ -1,7 +1,9 @@
 package com.example.przychodnia.service;
 
 import com.example.przychodnia.entity.Schedule;
+import com.example.przychodnia.entity.VisitsCalendar;
 import com.example.przychodnia.repository.ScheduleRepository;
+import com.example.przychodnia.repository.VisitsCalendarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final VisitsCalendarRepository visitsCalendarRepository;
 
     public List<Schedule> findAll() {
         return scheduleRepository.findAll();
@@ -31,6 +34,28 @@ public class ScheduleService {
 
     public Iterable<Schedule> findWeekByDay(String date, Long doctorId) {
         return scheduleRepository.findWeekByDate(date, doctorId);
+    }
+
+    public void addSchedule(Schedule schedule) {
+        scheduleRepository.save(schedule);
+        addVisitCalendarByDate(schedule);
+    }
+
+    public void deleteScheduleById(String id) {
+        scheduleRepository.deleteById(Long.parseLong(id));
+    }
+
+// metody dodatkowe
+
+    private void addVisitCalendarByDate(Schedule schedule) {
+        int visitTime = 30;
+        for (int i = 0; i < (schedule.getEndDay().getHour() - schedule.getStartDay().getHour()) * 2; i++) {
+            visitsCalendarRepository.save(new VisitsCalendar(
+                    schedule.getDate().atStartOfDay()
+                    , schedule.getStartDay().plusMinutes(visitTime * i)
+                    , schedule.getStartDay().plusMinutes(30).plusMinutes(visitTime * i)
+                    , schedule.getDoctor()));
+        }
     }
 
     public List<LocalDate> findFreeDayInWeek(LocalDateTime date, Long doctorId) {
@@ -54,13 +79,5 @@ public class ScheduleService {
             freeDayList.remove(temp);
         }
         return freeDayList;
-    }
-
-    public void addSchedule(Schedule schedule) {
-        scheduleRepository.save(schedule);
-    }
-
-    public void deleteScheduleById(String id) {
-        scheduleRepository.deleteById(Long.parseLong(id));
     }
 }

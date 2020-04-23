@@ -2,6 +2,7 @@ package com.example.przychodnia.controller;
 
 import com.example.przychodnia.entity.MyUserDetails;
 import com.example.przychodnia.entity.User;
+import com.example.przychodnia.service.RoleService;
 import com.example.przychodnia.service.UserService;
 import com.example.przychodnia.service.VisitsCalendarService;
 import lombok.RequiredArgsConstructor;
@@ -41,5 +42,8 @@ public class PatientController {
         return "patient/visit/delete";
     }
 
-
+    @GetMapping("/visit/register")
+    public String getFormViewCalendar(Model model){
+        return "patient/register/form";
+    }
 }

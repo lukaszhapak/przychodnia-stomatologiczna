@@ -25,9 +25,9 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
-    
+
     public void update(User user) {
-    	userRepository.save(user);
+        userRepository.save(user);
     }
 
     public long count() {
@@ -82,7 +82,7 @@ public class UserService {
         }
     }
 
-    public Optional<User> findByUsername(String username){
+    public Optional<User> findByUsername(String username) {
         return userRepository.findByUserName(username);
     }
 }

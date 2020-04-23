@@ -12,7 +12,7 @@
         <table>
             <tr>
                 <td>Data</td>
-                <td><input type="date" th:value="${inputDateString}" id="date" name="date" disabled></td>
+                <td><input type="date" th:value="${inputDateString}" id="date" name="date" readonly></td>
             </tr>
             <tr>
                 <td>Rozpoczęcie:</td>
@@ -47,7 +47,7 @@
             </tr>
             <tr>
                 <td>Doktor id</td>
-                <td><input type="text" th:value="${doctorId}" id="doctor" name="doctor" disabled></td>
+                <td><input type="text" th:value="${doctorId}" id="doctor" name="doctor" readonly></td>
             </tr>
         </table>
         <input type="submit" value="Zapisz">

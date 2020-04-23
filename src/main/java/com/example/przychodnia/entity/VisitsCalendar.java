@@ -22,4 +22,13 @@ public class VisitsCalendar {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private User doctor;
+
+    public VisitsCalendar(LocalDateTime date, LocalTime start, LocalTime end, User doctor) {
+        this.date = date;
+        this.start = start;
+        this.end = end;
+        this.doctor = doctor;
+    }
 }
+
+

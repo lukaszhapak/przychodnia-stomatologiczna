@@ -63,7 +63,7 @@ public class DentistController {
     }
 
     @PostMapping("/calendar/week")
-    public String getCalendarByWeek(@AuthenticationPrincipal MyUserDetails currentUser, @RequestParam String inputDateString, Model model) {
+    public String postCalendarByWeek(@AuthenticationPrincipal MyUserDetails currentUser, @RequestParam String inputDateString, Model model) {
         LocalTime open = contactDataService.findAll().get(0).getOpen();
         int defoultTimeVisit = 30;
         model.addAttribute("visits", visitsCalendarService.findByDoctorId(getCurrentUser(currentUser)));
@@ -90,7 +90,7 @@ public class DentistController {
     }
 
     @GetMapping("/schedule/week/{date}")
-    public String getScheduleWeek(@AuthenticationPrincipal MyUserDetails currentUser, @PathVariable String date, Model model) {
+    public String getScheduleWeekByDate(@AuthenticationPrincipal MyUserDetails currentUser, @PathVariable String date, Model model) {
         dataToScheduleWeek(currentUser, date, model, date.toString());
         return "dentist/schedule/schedule";
     }

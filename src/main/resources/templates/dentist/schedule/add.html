@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
     <meta charset="UTF-8">
 </head>
 <body>
+<div th:insert="fragments/dentistTopBar.html"></div>
 <div class="container">
 <h1>Dodaj godziny pracy:</h1>
     <form method="post" th:object="${schedule}" th:action="@{'/dentist/schedule/add/'+${inputDateString}}">
-        <input type="date" th:value="${inputDateString}" id="date" name="date">
-        Rozpoczęcie:
-        <select th:field="*{startDay}">
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-        </select>
-        Zakończenie:
-        <select th:field="*{endDay}">
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-        </select>
-        <input type="text" th:value="${doctorId}" id="doctor" name="doctor" style="visibility: hidden">
+        <table>
+            <tr>
+               <td>Data</td>
+                <td><input type="date" th:value="${inputDateString}" id="date" name="date" disabled></td>
+            </tr>
+        <tr>
+            <td>Rozpoczęcie:</td>
+            <td> <select th:field="*{startDay}">
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+            </select>
+            </td>
+        </tr>
+       <tr>
+           <td>Zakończenie:</td>
+           <td><select th:field="*{endDay}">
+               <option value="09:00">09:00</option>
+               <option value="10:00">10:00</option>
+               <option value="11:00">11:00</option>
+               <option value="12:00">12:00</option>
+               <option value="13:00">13:00</option>
+               <option value="14:00">14:00</option>
+               <option value="15:00">15:00</option>
+               <option value="16:00">16:00</option>
+               <option value="17:00">17:00</option>
+               <option value="18:00">18:00</option>
+           </select></td>
+       </tr>
+       <tr>
+           <td>Doktor id</td>
+           <td><input type="text" th:value="${doctorId}" id="doctor" name="doctor"></td>
+       </tr>
+        </table>
         <input type="submit" value="Zapisz">
     </form>
 </div>

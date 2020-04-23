@@ -10,7 +10,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     Iterable<Schedule> findAllByDoctorId(Long id);
 
-    @Query(value = "SELECT * FROM przychodnia_wspa.schedule where YEARWEEK(date) = YEARWEEK(:inputDate) and doctor_id = :doctor_id",
+    @Query(value = "SELECT * FROM schedule where YEARWEEK(date) = YEARWEEK(:inputDate) and doctor_id = :doctor_id",
                 nativeQuery = true)
     Iterable<Schedule> findWeekByDate(@Param("inputDate") String date, Long doctor_id);
 }

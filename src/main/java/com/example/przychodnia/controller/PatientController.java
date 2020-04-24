@@ -45,7 +45,9 @@ public class PatientController {
 
     @GetMapping("/visit/delete/{visitId}")
     public String takeVisit(@PathVariable String visitId) {
-        visitsCalendarService.deleteVisitsById(visitId);
+        VisitsCalendar visitsCalendar = visitsCalendarService.findById(Long.parseLong(visitId));
+        visitsCalendar.setPatient(null);
+        visitsCalendarService.addVisit(visitsCalendar);
         return "patient/visit/delete";
     }
 

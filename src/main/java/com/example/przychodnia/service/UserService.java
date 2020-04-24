@@ -1,5 +1,6 @@
 package com.example.przychodnia.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,5 +85,17 @@ public class UserService {
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUserName(username);
+    }
+
+    public List<User> findAllDoctor(){
+        List<User> doctorList = new ArrayList<>();
+        for (User user: userRepository.findAll()) {
+            for (Role role: user.getRoles()) {
+                if (role.getId() == 2){
+                    doctorList.add(user);
+                }
+            }
+        }
+        return doctorList;
     }
 }

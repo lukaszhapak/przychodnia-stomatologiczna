@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -9,11 +10,26 @@
 <div class="container">
     <h1>Wyszukaj wolny termin</h1>
     <br>
-    <form method="post" th:action="@{/dentist/schedule/week}">
-        <span>Wybierz tydzień</span>
-        <input type="date" name="inputDateString" required>
+    <form method="post" th:action="@{/patient/visit/register/week}">
+        <label for="date">Data: </label>
+        <input type="date" name="date" id="date">
+        <label for="dentist">Lekarz: </label>
+        <select name="dentist" id="dentist" required>
+            <option disabled selected>Wybierz dentystę</option>
+            <th:block th:each="dentist : ${dentistList}">
+            <option th:text="${dentist.getFirstName()}+' '+${dentist.getLastName()}" th:value="${dentist.getId()}"></option>
+            </th:block>
+        </select>
         <input type="submit" value="Przejdź">
     </form>
 </div>
 </body>
 </html>
+<style>
+    .container{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>

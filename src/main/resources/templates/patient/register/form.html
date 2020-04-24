@@ -12,10 +12,10 @@
     <br>
     <form method="post" th:action="@{/patient/visit/register/week}">
         <label for="date">Data: </label>
-        <input type="date" name="date" id="date">
+        <input type="date" name="date" id="date" required>
         <label for="dentist">Lekarz: </label>
         <select name="dentist" id="dentist" required>
-            <option disabled selected>Wybierz dentystę</option>
+            <option value="" disabled selected>Wybierz dentystę</option>
             <th:block th:each="dentist : ${dentistList}">
             <option th:text="${dentist.getFirstName()}+' '+${dentist.getLastName()}" th:value="${dentist.getId()}"></option>
             </th:block>

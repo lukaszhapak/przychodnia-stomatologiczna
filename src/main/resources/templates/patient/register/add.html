@@ -12,7 +12,7 @@
     <table>
         <tr>
             <td>Data: </td>
-            <td><input type="text" th:field="*{date}" readonly></td>
+            <td><input type="text" th:value="${#temporals.format(visitsCalendar.getDate(),'dd-MM-yyyy')}" name="date" id="date" readonly></td>
         </tr>
         <tr>
             <td>Godzina rozpoczęcia: </td>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td> Lekarz:</td>
-            <td><input type="text" th:value="${visitsCalendar.getDoctor().getLastName()} + ' '+ ${visitsCalendar.getDoctor().getFirstName()}" name="doctor" id="doctor" readonly> readonly></td>
+            <td><input type="text" th:value="${visitsCalendar.getDoctor().getLastName()} + ' '+ ${visitsCalendar.getDoctor().getFirstName()}" name="doctor" id="doctor" readonly></td>
         </tr>
     </table>
         <input type="submit" value="Potwierdź">

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:insert="fragments/patientTopBar.html"></div>
+<div class="container">
+    <h1>Umów się na wizytę: </h1>
+    <form method="post" th:action="@{'/patient/visit/register/add/'+${visitsCalendar.getId()}}" th:object="${visitsCalendar}">
+    <table>
+        <tr>
+            <td>Data: </td>
+            <td><input type="text" th:field="*{date}" readonly></td>
+        </tr>
+        <tr>
+            <td>Godzina rozpoczęcia: </td>
+            <td><input type="text" th:field="*{start}" readonly></td>
+        </tr>
+        <tr>
+            <td>Godzina zakończenia:</td>
+            <td><input type="text" th:field="*{end}" readonly></td>
+        </tr>
+        <tr>
+            <td> Lekarz:</td>
+            <td><input type="text" th:value="${visitsCalendar.getDoctor().getLastName()} + ' '+ ${visitsCalendar.getDoctor().getFirstName()}" name="doctor" id="doctor" readonly> readonly></td>
+        </tr>
+    </table>
+        <input type="submit" value="Potwierdź">
+    </form>
+</div>
+</body>
+</html>

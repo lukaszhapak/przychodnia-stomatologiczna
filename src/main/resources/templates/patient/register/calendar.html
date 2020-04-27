@@ -17,12 +17,14 @@
         <select name="dentist" id="dentist" required>
             <option value="" disabled selected>Wybierz dentystę</option>
             <th:block th:each="dentist : ${dentistList}">
-                <option th:text="${dentist.getFirstName()}+' '+${dentist.getLastName()}" th:value="${dentist.getId()}"></option>
+                <option th:text="${dentist.getFirstName()}+' '+${dentist.getLastName()}"
+                        th:value="${dentist.getId()}"></option>
             </th:block>
         </select>
         <input type="submit" value="Przejdź">
     </form>
     <br>
+    <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm')}"></span>
     <div class="table-responsive ">
         <table class="table table-bordered table-hover">
             <tr class="thead-dark">
@@ -44,13 +46,16 @@
                 <td th:text="${open.plusMinutes((difrence*i)-difrence)}+' - '+${open.plusMinutes(difrence*i)}"></td>
                 <td th:each="j : ${#numbers.sequence(1,7)}">
                     <th:block th:each="visit : ${visitsCalendar}">
-                        <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
+                        <th:block
+                                th:if="${visit.getDate().plusHours(visit.getStart().getHour()).plusMinutes(visit.getStart().getMinute()).isAfter(visit.getDate().now())}">
+                            <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
                 ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() == null}">
-                            <a th:href="@{'/patient/visit/register/add/'+${visit.getId()}}">Umów wizytę</a>
-                        </th:block>
-                        <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
+                                <a th:href="@{'/patient/visit/register/add/'+${visit.getId()}}">Umów wizytę</a>
+                            </th:block>
+                            <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
                 ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() != null}">
-                            Zajęte
+                                Brak terminu
+                            </th:block>
                         </th:block>
                     </th:block>
                 </td>

@@ -15,17 +15,21 @@
         <th>Lekarz</th>
         <th>Odwołaj</th>
     </tr>
-    <tr th:each="visit : ${visits}">
-        <td th:text="${#temporals.format(visit.getDate(), 'dd-MM-yyyy')}"></td>
-        <td th:text="${visit.getStart()}"></td>
-        <td th:text="${visit.getDoctor().getFirstName()}+' '+${visit.getDoctor().getLastName()}"></td>
-        <td>
+    <th:block th:each="visit : ${visits}">
+        <th:block th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
+            <tr>
+                <td th:text="${#temporals.format(visit.getDate(), 'dd-MM-yyyy')}"></td>
+                <td th:text="${visit.getStart()}"></td>
+                <td th:text="${visit.getDoctor().getFirstName()}+' '+${visit.getDoctor().getLastName()}"></td>
+                <td>
             <span th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
                  <a th:href="@{'/patient/visit/delete/'+ ${visit.id}}">Odwołaj</a>
             </span>
-            <span th:unless="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}"> - </span>
-        </td>
-    </tr>
+                    <span th:unless="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}"> - </span>
+                </td>
+            </tr>
+        </th:block>
+    </th:block>
 </table>
 </body>
 </html>

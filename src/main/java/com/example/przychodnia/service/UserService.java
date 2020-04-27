@@ -1,8 +1,7 @@
 package com.example.przychodnia.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -87,15 +86,27 @@ public class UserService {
         return userRepository.findByUserName(username);
     }
 
-    public List<User> findAllDoctor(){
+    public List<User> findAllDoctor() {
         List<User> doctorList = new ArrayList<>();
-        for (User user: userRepository.findAll()) {
-            for (Role role: user.getRoles()) {
-                if (role.getId() == 2){
+        for (User user : userRepository.findAll()) {
+            for (Role role : user.getRoles()) {
+                if (role.getRoleName().equals("ROLE_DENTIST")) {
                     doctorList.add(user);
                 }
             }
         }
         return doctorList;
+    }
+
+    public List<User> findAllPatient() {
+        List<User> patientList = new ArrayList<>();
+        for (User user : userRepository.findAll()) {
+            for (Role role : user.getRoles()) {
+                if (role.getRoleName().equals("ROLE_PATIENT")) {
+                    patientList.add(user);
+                }
+            }
+        }
+        return patientList;
     }
 }

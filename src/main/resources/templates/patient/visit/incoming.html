@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Moje wizyty</title>
 </head>
 <body>
 <div th:insert="fragments/patientTopBar.html"></div>
-<h1>Moje wizyty</h1>
-<table>
-    <tr>
-        <th>Data</th>
-        <th>Godzina</th>
-        <th>Lekarz</th>
-        <th>Odwołaj</th>
-    </tr>
-    <th:block th:each="visit : ${visits}">
-        <th:block th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
-            <tr>
-                <td th:text="${#temporals.format(visit.getDate(), 'dd-MM-yyyy')}"></td>
-                <td th:text="${visit.getStart()}"></td>
-                <td th:text="${visit.getDoctor().getFirstName()}+' '+${visit.getDoctor().getLastName()}"></td>
-                <td>
+<div class="container">
+    <h1>Moje wizyty</h1>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Data</th>
+            <th>Godzina</th>
+            <th>Lekarz</th>
+            <th>Odwołaj</th>
+        </tr>
+        <th:block th:each="visit : ${visits}">
+            <th:block th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
+                <tr>
+                    <td th:text="${#temporals.format(visit.getDate(), 'dd-MM-yyyy')}"></td>
+                    <td th:text="${visit.getStart()}"></td>
+                    <td th:text="${visit.getDoctor().getFirstName()}+' '+${visit.getDoctor().getLastName()}"></td>
+                    <td>
             <span th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
                  <a th:href="@{'/patient/visit/delete/'+ ${visit.id}}">Odwołaj</a>
             </span>
-                    <span th:unless="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}"> - </span>
-                </td>
-            </tr>
+                        <span th:unless="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}"> - </span>
+                    </td>
+                </tr>
+            </th:block>
         </th:block>
-    </th:block>
-</table>
+    </table>
+</div>
 </body>
 </html>
+<style>
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>

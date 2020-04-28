@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Moje wizyty</title>
 </head>
 <body>
 <div th:insert="fragments/patientTopBar.html"></div>
@@ -24,7 +23,7 @@
                     <td th:text="${visit.getDoctor().getFirstName()}+' '+${visit.getDoctor().getLastName()}"></td>
                     <td>
             <span th:if="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}">
-                 <a th:href="@{'/patient/visit/delete/'+ ${visit.id}}">Odwołaj</a>
+                 <a class="btn btn-danger" th:href="@{'/patient/visit/delete/'+ ${visit.id}}">Odwołaj</a>
             </span>
                         <span th:unless="${visit.getDate().plusHours(visit.getStart().getHour()).isAfter(visit.getDate().now())}"> - </span>
                     </td>

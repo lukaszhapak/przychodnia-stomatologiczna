@@ -64,12 +64,11 @@ public class DentistController {
 
     @PostMapping("/calendar/week")
     public String postCalendarByWeek(@AuthenticationPrincipal MyUserDetails currentUser, @RequestParam String inputDateString, Model model) {
-        LocalTime open = contactDataService.findAll().get(0).getOpen();
         int defoultTimeVisit = 30;
         model.addAttribute("visits", visitsCalendarService.findByDoctorId(getCurrentUser(currentUser)));
         model.addAttribute("today", getDateFromInputDate(inputDateString));
         model.addAttribute("dayOfWeek", getDateFromInputDate(inputDateString).getDayOfWeek().getValue());
-        model.addAttribute("open", open);
+        model.addAttribute("open", contactDataService.findAll().get(0).getOpen());
         model.addAttribute("difrence", defoultTimeVisit);
         model.addAttribute(inputDateString);
         return "dentist/calendar/calendar";
@@ -97,9 +96,8 @@ public class DentistController {
 
     @GetMapping("/schedule/add/{date}")
     public String addScheduleDayForm(@PathVariable String date, @AuthenticationPrincipal MyUserDetails currentUser, Model model) {
-        String doctroId = getCurrentUser(currentUser);
         model.addAttribute("inputDateString", date);
-        model.addAttribute("doctorId", doctroId);
+        model.addAttribute("doctorId", getCurrentUser(currentUser));
         model.addAttribute(new Schedule());
         return "dentist/schedule/add";
     }
@@ -113,13 +111,14 @@ public class DentistController {
     @GetMapping("/schedule/update/{id}")
     public String updateScheduleForm(@PathVariable String id, Model model) {
         model.addAttribute("scheduleById", scheduleService.findById(id));
+        model.addAttribute("visitsInDay", visitsCalendarService.findByDoctorAndDateCount(scheduleService.findById(id).get().getDoctor().getId().toString(), scheduleService.findById(id).get().getDate().toString()));
         return "dentist/schedule/update";
     }
 
-    @PutMapping("schedule/update/{id}")
-    public String updateSchedule(@Valid Schedule schedule, @PathVariable String id) {
-        scheduleService.addSchedule(schedule);
-        return "dentist/schedule/update";
+    @PostMapping("schedule/delete/{id}")
+    public String updateSchedule(@PathVariable String id,@RequestParam String date,@AuthenticationPrincipal MyUserDetails currentUser) {
+        visitsCalendarService.deleteByDateAndDoctor(date,Long.parseLong(getCurrentUser(currentUser)));
+        scheduleService.deleteScheduleById(id);
+        return "redirect:/dentist/schedule/week/" + date;
     }
-
 }

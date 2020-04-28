@@ -5,19 +5,18 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/patientTopBar.html"></div>
+<div th:insert="fragments/receptionistTopBar.html"></div>
 <div class="container">
     <h1>Wyszukaj wolny termin</h1>
     <br>
-    <form method="post" th:action="@{/patient/visit/register/week}">
+    <form method="post" th:action="@{/receptionist/visit/register}">
         <label for="date">Data: </label>
         <input type="date" name="date" id="date" required>
         <label for="dentist">Lekarz: </label>
         <select name="dentist" id="dentist" required>
             <option value="" disabled selected>Wybierz dentystę</option>
             <th:block th:each="dentist : ${dentistList}">
-                <option th:text="${dentist.getLastName()}+' '+${dentist.getFirstName()}"
-                        th:value="${dentist.getId()}"></option>
+                <option th:text="${dentist.getLastName()}+' '+${dentist.getFirstName()}" th:value="${dentist.getId()}"></option>
             </th:block>
         </select>
         <input type="submit" value="Przejdź">
@@ -26,7 +25,7 @@
 </body>
 </html>
 <style>
-    .container {
+    .container{
         width: 100%;
         margin-left: auto;
         margin-right: auto;

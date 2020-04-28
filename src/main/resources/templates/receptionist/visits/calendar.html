@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/patientTopBar.html"></div>
+<div th:insert="fragments/receptionistTopBar.html"></div>
 <div class="container">
     <h1>Wyszukaj wolny termin</h1>
     <br>
-    <form method="post" th:action="@{/patient/visit/register/week}">
+    <form method="post" th:action="@{/receptionist/visit/register}">
         <label for="date">Data: </label>
         <input type="date" name="date" id="date" required>
         <label for="dentist">Lekarz: </label>
@@ -23,7 +23,7 @@
         <input type="submit" value="Przejdź">
     </form>
     <br>
-    <p><b>Lekarz: </b><span th:text="${doctor.getFirstName()}+' '+${doctor.getLastName()}"></span> </p>
+    <p><b>Lekarz: </b><span th:text="${doctor.getFirstName()}+' '+${doctor.getLastName()}"></span></p>
     <div class="table-responsive ">
         <table class="table table-bordered table-hover">
             <tr class="thead-dark">
@@ -49,11 +49,21 @@
                                 th:if="${visit.getDate().plusHours(visit.getStart().getHour()).plusMinutes(visit.getStart().getMinute()).isAfter(visit.getDate().now())}">
                             <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
                 ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() == null}">
-                                <a class="btn btn-primary" th:href="@{'/patient/visit/register/add/'+${visit.getId()}}">Umów wizytę</a>
+                                <a class="btn btn-primary"
+                                   th:href="@{'/receptionist/visit/register/add/'+${visit.getId()}}">Umów wizytę</a>
                             </th:block>
                             <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
                 ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() != null}">
-                                Brak terminu
+                                <a class="btn btn-warning"
+                                   th:href="@{'/receptionist/visit/register/update/'+${visit.getId()}}">
+                                    <span th:text="${visit.getPatient().getFirstName()} + ' '+ ${visit.getPatient().getLastName()}"></span></a>
+                            </th:block>
+                        </th:block>
+                        <th:block
+                                th:unless="${visit.getDate().plusHours(visit.getStart().getHour()).plusMinutes(visit.getStart().getMinute()).isAfter(visit.getDate().now())}">
+                            <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
+                ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() != null}">
+                                <span th:text="${visit.getPatient().getFirstName()} + ' '+ ${visit.getPatient().getLastName()}"></span>
                             </th:block>
                         </th:block>
                     </th:block>

@@ -3,15 +3,14 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Tydzień pracy</title>
 </head>
 <body>
 <div th:insert="fragments/dentistTopBar.html"></div>
 <div class="container">
-    <h1>Tak wygląda tydzień</h1>
+    <h1>Dodaj godziny dostępności w gabinecie</h1>
     <br>
     <form method="post" th:action="@{/dentist/schedule/week}">
-        <span>Wybierz tydzień</span>
+        <span>Data</span>
         <input type="date" name="inputDateString" required>
         <input type="submit" value="Przejdź">
     </form>
@@ -32,7 +31,7 @@
                         <td>Uzupełnij dane</td>
                         <td>Uzupełnij dane</td>
                         <td>
-                            <a th:href="@{'/dentist/schedule/add/' +${#temporals.format(today.plusDays(i).minusDays(dayOfWeek), 'yyyy-MM-dd')}}">Dodaj</a>
+                            <a class="btn btn-primary" th:href="@{'/dentist/schedule/add/' +${#temporals.format(today.plusDays(i).minusDays(dayOfWeek), 'yyyy-MM-dd')}}">Dodaj</a>
                         </td>
                     </th:block>
                 </th:block>
@@ -41,7 +40,7 @@
                             th:if="${#temporals.format(today.plusDays(i).minusDays(dayOfWeek), 'yyyy-MM-dd')} == ${#temporals.format(schedule.getDate(),'yyyy-MM-dd')}">
                         <td th:text="${schedule.getStartDay()}">Start day</td>
                         <td th:text="${schedule.getEndDay()}">End day</td>
-                        <td><a th:href="@{'/dentist/schedule/week/' + ${#temporals.format(schedule.getDate(),'yyyy-MM-dd')}}">Edytuj</a></td>
+                        <td><a class="btn btn-warning" th:href="@{'/dentist/schedule/update/' + ${schedule.getId()}}">Edytuj</a></td>
                     </th:block>
                 </th:block>
             </tr>

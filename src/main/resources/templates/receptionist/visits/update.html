@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/patientTopBar.html"></div>
+<div th:insert="fragments/receptionistTopBar.html"></div>
 <div class="container">
-    <h3 class="text-center">Umów się na wizytę: </h3>
-    <form method="post" th:action="@{'/patient/visit/register/add/'+${visitsCalendar.getId()}}"
+    <h3 class="text-center">Odwołaj wizytę: </h3>
+    <form method="post" th:action="@{'/receptionist/visit/register/update/'+${visitsCalendar.getId()}}"
           th:object="${visitsCalendar}">
         <table class="table table-striped">
             <tr>
@@ -31,11 +31,17 @@
                            th:value="${visitsCalendar.getDoctor().getLastName()} + ' '+ ${visitsCalendar.getDoctor().getFirstName()}"
                            name="doctor" id="doctor" readonly></td>
             </tr>
+            <tr>
+                <td> Pacjent:</td>
+                <td><input class="form-control" type="text"
+                           th:value="${visitsCalendar.getPatient().getLastName()} + ' '+ ${visitsCalendar.getPatient().getFirstName()}"
+                           name="patient" id="patient" readonly></td>
+            </tr>
         </table>
         <div class="float-right">
-            <input class="btn btn-primary" type="submit" value="Potwierdź">
+            <input class="btn btn-danger" type="submit" value="Odwołaj">
             <a class="btn btn-primary"
-               th:href="@{'/patient/visit/register/'+${#temporals.format(visitsCalendar.getDate(),'yyyy-MM-dd')}+'/'+${visitsCalendar.getDoctor().getId()}}">Wróc do listy</a>
+               th:href="@{'/receptionist/visit/register/'+${#temporals.format(visitsCalendar.getDate(),'yyyy-MM-dd')}+'/'+${visitsCalendar.getDoctor().getId()}}">Wróc do listy</a>
         </div>
     </form>
 </div>

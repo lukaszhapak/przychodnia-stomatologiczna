@@ -33,6 +33,13 @@ public class VisitsCalendarService {
         return visitsCalendarRepository.save(visitsCalendar);
     }
 
+    public long findByDoctorAndDateCount(String doctor, String date){
+        return visitsCalendarRepository.findByDoctorAndDateCount(Long.parseLong(doctor),date);
+    }
+
+    public void deleteByDateAndDoctor(String date, Long doctor){
+        visitsCalendarRepository.deleteByDateAndDoctor(date,doctor);
+    }
     public void deleteVisitsById(String id){
         visitsCalendarRepository.deleteById(Long.parseLong(id));
     }

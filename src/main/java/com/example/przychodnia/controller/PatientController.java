@@ -57,10 +57,25 @@ public class PatientController {
         return "patient/register/form";
     }
 
+    @GetMapping("/visit/register/{date}/{dentist}")
+    public String getRegisterWeekByDate(Model model, @PathVariable String date, @PathVariable String dentist){
+        LocalTime open = contactDataService.findAll().get(0).getOpen();
+        int defoultTimeVisit = 30;
+        model.addAttribute("doctor", userService.findById(dentist));
+        model.addAttribute("dentistList", userService.findAllDoctor());
+        model.addAttribute("visitsCalendar", visitsCalendarService.findByDoctorId(dentist));
+        model.addAttribute("today", getDateFromInputDate(date));
+        model.addAttribute("dayOfWeek", getDateFromInputDate(date).getDayOfWeek().getValue());
+        model.addAttribute("difrence", defoultTimeVisit);
+        model.addAttribute("open", open);
+        return "patient/register/calendar";
+    }
+
     @PostMapping("/visit/register/week")
     public String postRegisterWeek(Model model, @RequestParam String date, @RequestParam String dentist){
         LocalTime open = contactDataService.findAll().get(0).getOpen();
         int defoultTimeVisit = 30;
+        model.addAttribute("doctor", userService.findById(dentist));
         model.addAttribute("dentistList", userService.findAllDoctor());
         model.addAttribute("visitsCalendar", visitsCalendarService.findByDoctorId(dentist));
         model.addAttribute("today", getDateFromInputDate(date));

@@ -95,7 +95,9 @@ public class UserService {
                 }
             }
         }
-        return doctorList;
+        return doctorList.stream()
+                .sorted(Comparator.comparing(User::getLastName))
+                .collect(Collectors.toList());
     }
 
     public List<User> findAllPatient() {
@@ -107,6 +109,8 @@ public class UserService {
                 }
             }
         }
-        return patientList;
+        return patientList.stream()
+                .sorted(Comparator.comparing(User::getLastName))
+                .collect(Collectors.toList());
     }
 }

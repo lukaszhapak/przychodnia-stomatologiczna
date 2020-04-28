@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
 <div th:insert="fragments/patientTopBar.html"></div>
@@ -17,7 +16,7 @@
         <select name="dentist" id="dentist" required>
             <option value="" disabled selected>Wybierz dentystę</option>
             <th:block th:each="dentist : ${dentistList}">
-                <option th:text="${dentist.getFirstName()}+' '+${dentist.getLastName()}"
+                <option th:text="${dentist.getLastName()}+' '+${dentist.getFirstName()}"
                         th:value="${dentist.getId()}"></option>
             </th:block>
         </select>

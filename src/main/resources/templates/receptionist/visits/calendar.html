@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Kalendarz</title>
 </head>
 <body>
 <div th:insert="fragments/receptionistTopBar.html"></div>
@@ -17,14 +16,14 @@
         <select name="dentist" id="dentist" required>
             <option value="" disabled selected>Wybierz dentystę</option>
             <th:block th:each="dentist : ${dentistList}">
-                <option th:text="${dentist.getFirstName()}+' '+${dentist.getLastName()}"
+                <option th:text="${dentist.getLastName()}+' '+${dentist.getFirstName()}"
                         th:value="${dentist.getId()}"></option>
             </th:block>
         </select>
         <input type="submit" value="Przejdź">
     </form>
     <br>
-    <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm')}"></span>
+    <p><b>Lekarz: </b><span th:text="${doctor.getFirstName()}+' '+${doctor.getLastName()}"></span></p>
     <div class="table-responsive ">
         <table class="table table-bordered table-hover">
             <tr class="thead-dark">
@@ -50,12 +49,14 @@
                                 th:if="${visit.getDate().plusHours(visit.getStart().getHour()).plusMinutes(visit.getStart().getMinute()).isAfter(visit.getDate().now())}">
                             <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
                 ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() == null}">
-                                <a th:href="@{'/receptionist/visit/register/add/'+${visit.getId()}}">Umów wizytę</a>
+                                <a class="btn btn-primary"
+                                   th:href="@{'/receptionist/visit/register/add/'+${visit.getId()}}">Umów wizytę</a>
                             </th:block>
                             <th:block th:if="${#temporals.format(visit.getDate(), 'yyyy-MM-dd')} == ${#temporals.format(today.plusDays(j).minusDays(dayOfWeek), 'yyyy-MM-dd')} and
-                ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() != null}"><a
-                                    th:href="@{'/receptionist/visit/register/add/'+${visit.getId()}}">
-                                <span th:text="${visit.getPatient().getFirstName()} + ' '+ ${visit.getPatient().getLastName()}"></span></a>
+                ${visit.getStart()} == ${open.plusMinutes((difrence*i)-difrence)} and ${visit.getPatient() != null}">
+                                <a class="btn btn-warning"
+                                   th:href="@{'/receptionist/visit/register/update/'+${visit.getId()}}">
+                                    <span th:text="${visit.getPatient().getFirstName()} + ' '+ ${visit.getPatient().getLastName()}"></span></a>
                             </th:block>
                         </th:block>
                         <th:block

@@ -2,10 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Kasowanie wizyty</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <div th:insert="fragments/patientTopBar.html"></div>
-<h1>Twoja wizyta została odwołana</h1>
+<div class="container">
+    <h1>Twoja wizyta została odwołana</h1>
+</div>
 </body>
 </html>
+<style>
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>

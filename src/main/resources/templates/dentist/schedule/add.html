@@ -7,16 +7,16 @@
 <body>
 <div th:insert="fragments/dentistTopBar.html"></div>
 <div class="container">
-    <h1>Dodaj godziny pracy:</h1>
+    <h3 class="text-center">Dodaj godziny pracy:</h3>
     <form method="post" th:object="${schedule}" th:action="@{'/dentist/schedule/add/'+${inputDateString}}">
-        <table>
+        <table class="table table-striped">
             <tr>
                 <td>Data</td>
-                <td><input type="date" th:value="${inputDateString}" id="date" name="date" readonly></td>
+                <td><input class="form-control" type="date" th:value="${inputDateString}" id="date" name="date" readonly></td>
             </tr>
             <tr>
                 <td>Rozpoczęcie:</td>
-                <td><select th:field="*{startDay}">
+                <td><select class="form-control" th:field="*{startDay}">
                     <option value="08:00">08:00</option>
                     <option value="09:00">09:00</option>
                     <option value="10:00">10:00</option>
@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td>Zakończenie:</td>
-                <td><select th:field="*{endDay}">
+                <td><select class="form-control" th:field="*{endDay}">
                     <option value="09:00">09:00</option>
                     <option value="10:00">10:00</option>
                     <option value="11:00">11:00</option>
@@ -47,11 +47,13 @@
             </tr>
             <tr>
                 <td>Doktor id</td>
-                <td><input type="text" th:value="${doctorId}" id="doctor" name="doctor" readonly></td>
+                <td><input class="form-control" type="text" th:value="${doctorId}" id="doctor" name="doctor" readonly></td>
             </tr>
         </table>
-        <input type="submit" value="Zapisz">
-        <a th:href="@{'/dentist/schedule/week/'+${inputDateString}}"><input type="button" value="Wróć do listy"></a>
+        <div class="float-right">
+        <input class="btn btn-primary" type="submit" value="Zapisz">
+        <a class="btn btn-primary" th:href="@{'/dentist/schedule/week/'+${inputDateString}}">Wróc do listy</a>
+        </div>
     </form>
 </div>
 </body>

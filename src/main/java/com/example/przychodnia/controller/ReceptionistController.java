@@ -66,10 +66,25 @@ public class ReceptionistController {
         return "receptionist/visits/form";
     }
 
+    @GetMapping("/visit/register/{date}/{id}")
+    public String getRegisterWeekByDate(@PathVariable String id, @PathVariable String date, Model model) {
+        LocalTime open = contactDataService.findAll().get(0).getOpen();
+        int defoultTimeVisit = 30;
+        model.addAttribute("doctor", userService.findById(id));
+        model.addAttribute("dentistList", userService.findAllDoctor());
+        model.addAttribute("visitsCalendar", visitsCalendarService.findByDoctorId(id));
+        model.addAttribute("today", getDateFromInputDate(date));
+        model.addAttribute("dayOfWeek", getDateFromInputDate(date).getDayOfWeek().getValue());
+        model.addAttribute("difrence", defoultTimeVisit);
+        model.addAttribute("open", open);
+        return "receptionist/visits/calendar";
+    }
+
     @PostMapping("/visit/register")
     public String postRegisterWeek(Model model, @RequestParam String date, @RequestParam String dentist){
         LocalTime open = contactDataService.findAll().get(0).getOpen();
         int defoultTimeVisit = 30;
+        model.addAttribute("doctor", userService.findById(dentist));
         model.addAttribute("dentistList", userService.findAllDoctor());
         model.addAttribute("visitsCalendar", visitsCalendarService.findByDoctorId(dentist));
         model.addAttribute("today", getDateFromInputDate(date));
@@ -91,6 +106,21 @@ public class ReceptionistController {
         VisitsCalendar visit = visitsCalendarService.findById(Long.parseLong(id));
         visit.setPatient(userService.findById(patient));
         visitsCalendarService.addVisit(visit);
-        return "patient/register/added";
+        return "receptionist/visits/added";
+    }
+
+    @GetMapping("/visit/register/update/{id}")
+    public String updateVisit(@PathVariable String id,Model model){
+        model.addAttribute("patientList",userService.findAllPatient());
+        model.addAttribute(visitsCalendarService.findById(Long.parseLong(id)));
+        return "receptionist/visits/update";
+    }
+
+    @PostMapping("/visit/register/update/{id}")
+    public String deletePatientIdVisitCalendar(@PathVariable String id){
+        VisitsCalendar visit = visitsCalendarService.findById(Long.parseLong(id));
+        visit.setPatient(null);
+        visitsCalendarService.addVisit(visit);
+        return "receptionist/visits/delete";
     }
 }

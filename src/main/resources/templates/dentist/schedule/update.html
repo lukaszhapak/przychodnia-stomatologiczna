@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <th:block th:include="fragments/dentist :: header"></th:block>
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/dentistTopBar.html"></div>
+<nav th:replace="fragments/dentist :: navbar"></nav>
 <div class="container">
     <h3 class="text-center">Edytuj godziny pracy:</h3>
     <form method="post" th:action="@{'/dentist/schedule/delete/'+${scheduleById.get().getId()}}">
@@ -40,5 +40,6 @@
         </th:block>
     </form>
 </div>
+<div th:replace="fragments/dentist :: scripts"></div>
 </body>
 </html>

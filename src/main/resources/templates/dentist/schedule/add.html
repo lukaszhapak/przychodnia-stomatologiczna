@@ -11,7 +11,7 @@
     <form method="post" th:object="${schedule}" th:action="@{'/dentist/schedule/add/'+${inputDateString}}">
         <table class="table table-striped">
             <tr>
-                <td>Data</td>
+                <td>Data: </td>
                 <td><input class="form-control" type="date" th:value="${inputDateString}" id="date" name="date" readonly></td>
             </tr>
             <tr>

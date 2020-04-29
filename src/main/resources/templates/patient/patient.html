@@ -2,10 +2,14 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Pacjenta</title>
+    <th:block th:include="fragments/patient :: header"></th:block>
 </head>
 <body>
-<div th:insert="fragments/patientTopBar.html"></div>
-<p>panel pacjenta</p>
+<nav th:replace="fragments/patient :: navbar"></nav>
+
+<br>
+<h2 class="text-center"> Witaj w panelu pacjenta</h2>
+
+<div th:replace="fragments/patient :: scripts"></div>
 </body>
 </html>

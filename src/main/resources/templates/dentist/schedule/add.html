@@ -6,6 +6,7 @@
 </head>
 <body>
 <nav th:replace="fragments/dentist :: navbar"></nav>
+<br>
 <div class="container">
     <h3 class="text-center">Dodaj godziny pracy:</h3>
     <form method="post" th:object="${schedule}" th:action="@{'/dentist/schedule/add/'+${inputDateString}}">

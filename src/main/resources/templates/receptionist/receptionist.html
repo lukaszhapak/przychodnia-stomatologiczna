@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Recepcjonisty</title>
+    <th:block th:include="fragments/receptionist :: header"></th:block>
 </head>
 <body>
+<nav th:replace="fragments/receptionist :: navbar"></nav>
 
-<div th:insert="fragments/receptionistTopBar.html"></div>
+<br>
+<h2 class="text-center"> Witaj w panelu recepcji</h2>
 
-<p>panel recepcjonisty</p>
-
+<div th:replace="fragments/receptionist :: scripts"></div>
 </body>
 </html>

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <th:block th:include="fragments/dentist :: header"></th:block>
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/dentistTopBar.html"></div>
+<nav th:replace="fragments/dentist :: navbar"></nav>
+<br>
 <div class="container">
     <h3 class="text-center">Dodaj godziny pracy:</h3>
     <form method="post" th:object="${schedule}" th:action="@{'/dentist/schedule/add/'+${inputDateString}}">
         <table class="table table-striped">
             <tr>
-                <td>Data</td>
+                <td>Data: </td>
                 <td><input class="form-control" type="date" th:value="${inputDateString}" id="date" name="date" readonly></td>
             </tr>
             <tr>
@@ -45,7 +46,7 @@
                     <option value="18:00">18:00</option>
                 </select></td>
             </tr>
-            <tr>
+            <tr style="display: none">
                 <td>Doktor id</td>
                 <td><input class="form-control" type="text" th:value="${doctorId}" id="doctor" name="doctor" readonly></td>
             </tr>
@@ -56,5 +57,6 @@
         </div>
     </form>
 </div>
+<div th:replace="fragments/dentist :: scripts"></div>
 </body>
 </html>

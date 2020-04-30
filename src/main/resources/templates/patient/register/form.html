@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <th:block th:include="fragments/patient :: header"></th:block>
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/patientTopBar.html"></div>
+<nav th:replace="fragments/patient :: navbar"></nav>
+<br>
 <div class="container">
-    <h1>Wyszukaj wolny termin</h1>
+    <h2>Wyszukaj wolny termin</h2>
     <br>
     <form method="post" th:action="@{/patient/visit/register/week}">
         <label for="date">Data: </label>
@@ -23,6 +24,7 @@
         <input type="submit" value="Przejdź">
     </form>
 </div>
+<div th:replace="fragments/patient :: scripts"></div>
 </body>
 </html>
 <style>

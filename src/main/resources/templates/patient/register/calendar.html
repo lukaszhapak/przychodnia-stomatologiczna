@@ -38,11 +38,11 @@
             </tr>
             <tr>
                 <td>GODZINA</td>
-                <td th:each="i : ${#numbers.sequence(1,7)}" th:value="day"
+                <td nowrap="nowrap" class="align-middle" th:each="i : ${#numbers.sequence(1,7)}" th:value="day"
                     th:text="${#temporals.format(today.plusDays(i).minusDays(dayOfWeek), 'dd-MM-yyyy')}"></td>
             </tr>
             <tr th:each="i: ${#numbers.sequence(1,20)}">
-                <td th:text="${open.plusMinutes((difrence*i)-difrence)}+' - '+${open.plusMinutes(difrence*i)}"></td>
+                <td nowrap="nowrap" class="align-middle" th:text="${open.plusMinutes((difrence*i)-difrence)}+' - '+${open.plusMinutes(difrence*i)}"></td>
                 <td th:each="j : ${#numbers.sequence(1,7)}">
                     <th:block th:each="visit : ${visitsCalendar}">
                         <th:block

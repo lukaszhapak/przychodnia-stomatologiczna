@@ -6,8 +6,9 @@
 </head>
 <body>
 <nav th:replace="fragments/dentist :: navbar"></nav>
+<br>
 <div class="container">
-    <h1>Mój kalendarz</h1>
+    <h2>Mój kalendarz</h2>
     <br>
     <form method="post" th:action="@{/dentist/calendar/week}" >
         <span>Data: </span>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <th:block th:include="fragments/receptionistLessMessage :: header"></th:block>
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:insert="fragments/receptionistTopBar.html"></div>
+<nav th:replace="fragments/receptionistLessMessage :: navbar"></nav>
+<br>
 <div class="container">
     <h3 class="text-center">Odwołaj wizytę: </h3>
     <form method="post" th:action="@{'/receptionist/visit/register/update/'+${visitsCalendar.getId()}}"
@@ -45,5 +46,6 @@
         </div>
     </form>
 </div>
+<div th:replace="fragments/receptionistLessMessage :: scripts"></div>
 </body>
 </html>

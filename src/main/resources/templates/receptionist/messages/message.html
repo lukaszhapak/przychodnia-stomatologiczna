@@ -2,12 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>receptionist</title>
-    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <th:block th:include="fragments/receptionist :: header"></th:block>
 </head>
 <body>
 
-<div th:insert="fragments/receptionistTopBar.html"></div>
+<nav th:replace="fragments/receptionist :: navbar"></nav>
 
 <h3>Wiadomość</h3>
 <p th:text="|nadawca: ${message.name}|"></p>
@@ -15,5 +14,6 @@
 <p th:text="|numer telefonu: ${message.number}|"></p>
 <p th:text="${message.text}"></p>
 
+<div th:replace="fragments/receptionist :: scripts"></div>
 </body>
 </html>

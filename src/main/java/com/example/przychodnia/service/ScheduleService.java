@@ -70,14 +70,17 @@ public class ScheduleService {
         }
 
         for (int i = 0; i < dayOnSchedule.size(); i++) {
-            LocalDate temp = date.toLocalDate();
+            LocalDate temp = null;
             for (LocalDate item : freeDayList) {
                 if (dayOnSchedule.get(i).getDate().equals(item)) {
                     temp = item;
                 }
             }
-            freeDayList.remove(temp);
+            if (temp != null) {
+                freeDayList.remove(temp);
+            }
         }
+        //System.out.println(freeDayList);
         return freeDayList;
     }
 }

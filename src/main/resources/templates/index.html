@@ -28,7 +28,7 @@
             <input th:field="*{number}" readonly type="text" class="contact-form-text" placeholder="Numer telefonu">
         </div>
         <textarea th:field="*{text}" class="contact-form-text" placeholder="Twoja wiadomość"></textarea>
-        <input type="submit" class="contact-form-btn" value="Wyślij">
+        <input sec:authorize="isAuthenticated()" type="submit" class="contact-form-btn" value="Wyślij">
     </form>
 </div>
 
